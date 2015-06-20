@@ -16,13 +16,13 @@
   </MiningSchema>
   <Item id="1" value="V1"/>
   <Item id="2" value="CAMPING"/>
-  <Item id="3" value="CUCHILLERÍA"/>
+  <Item id="3" value="CUCHILLERIA"/>
   <Item id="4" value="INDUMENTARIA"/>
   <Item id="5" value="INDUMENTARIA PESCA"/>
   <Item id="6" value="INSTRUMENTAL"/>
   <Item id="7" value="OPTICA"/>
   <Item id="8" value="PESCA"/>
-  <Item id="9" value="PESCA CAÑAS"/>
+  <Item id="9" value="PESCA CANAS"/>
   <Item id="10" value="PESCA REELS"/>
   <Item id="11" value="PROMO ITEMS"/>
   <Item id="12" value="TIRO Y DEFENSA"/>
