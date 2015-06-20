@@ -1,0 +1,14 @@
+\begin{thebibliography}{}
+
+\bibitem[Hall et~al., 2009]{Hall:2009:WDM:1656274.1656278}
+Hall, M., Frank, E., Holmes, G., Pfahringer, B., Reutemann, P., and Witten,
+  I.~H. (2009).
+\newblock The weka data mining software: An update.
+\newblock {\em SIGKDD Explor. Newsl.}, 11(1):10--18.
+
+\bibitem[{R Core Team}, 2013]{RCran}
+{R Core Team} (2013).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\end{thebibliography}
