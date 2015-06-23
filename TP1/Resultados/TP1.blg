@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: TP1.aux
 The style file: apalike.bst
 Database file #1: Bibliografia.bib
-You've used 2 entries,
+Warning--I didn't find a database entry for "EXcel2013"
+You've used 4 entries,
             1935 wiz_defined-function locations,
-            488 strings with 4068 characters,
-and the built_in function-call counts, 794 in all, are:
-= -- 74
-> -- 40
-< -- 1
-+ -- 16
-- -- 14
-* -- 69
-:= -- 148
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 16
-chr.to.int$ -- 2
-cite$ -- 2
-duplicate$ -- 27
-empty$ -- 49
-format.name$ -- 16
-if$ -- 145
+            504 strings with 4415 characters,
+and the built_in function-call counts, 1467 in all, are:
+= -- 137
+> -- 71
+< -- 2
++ -- 26
+- -- 24
+* -- 123
+:= -- 271
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 30
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 55
+empty$ -- 95
+format.name$ -- 30
+if$ -- 276
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 13
-num.names$ -- 6
-pop$ -- 14
+missing$ -- 5
+newline$ -- 23
+num.names$ -- 12
+pop$ -- 31
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 32
 quote$ -- 0
-skip$ -- 20
+skip$ -- 39
 stack$ -- 0
-substring$ -- 45
-swap$ -- 3
+substring$ -- 69
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 20
 warning$ -- 0
-while$ -- 6
+while$ -- 10
 width$ -- 0
-write$ -- 28
+write$ -- 55
+(There was 1 warning)

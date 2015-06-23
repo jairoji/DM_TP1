@@ -11,4 +11,14 @@ Hall, M., Frank, E., Holmes, G., Pfahringer, B., Reutemann, P., and Witten,
 \newblock {\em R: A Language and Environment for Statistical Computing}.
 \newblock R Foundation for Statistical Computing, Vienna, Austria.
 
+\bibitem[Tan et~al., 2005]{Tan:2005:IDM:1095618}
+Tan, P.-N., Steinbach, M., and Kumar, V. (2005).
+\newblock {\em Introduction to Data Mining, (First Edition)}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA.
+
+\bibitem[Witten and Frank, 2005]{Weka1}
+Witten, I.~H. and Frank, E. (2005).
+\newblock {\em Data Mining: Practical Machine Learning Tools and Techniques}.
+\newblock Morgan Kaufmann, San Francisco, 2nd edition.
+
 \end{thebibliography}

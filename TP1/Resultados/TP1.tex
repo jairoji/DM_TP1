@@ -16,32 +16,85 @@
 
 \section{Introducción}
 
-\section{Preprocesamiento}
 
-\section{Software utilizado}
-Para la elaboración del trabajo, se usó el software estadístico R \cite{RCran}.
-
-\section{Medidas}
-Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las vistas en clase. Las medidas que fueron elegidas, tienen la propiedad de ser \textit{null-invariantes}, es decir que no se ven  elegidas fueron tomadas del libro  \cite{Hall:2009:WDM:1656274.1656278}\\
-
-
-Medida de Kulczynsky:
-
-\begin{center}
-	$Kulc(A,B)= \frac{1}{2}\left(P(A|B) P(B|A)\right)$	
-\end{center}
-
-Razón de desbalanceo:
-
-\begin{center}
-	$IR = \frac{|sup(A)- sup(B)|}{sup(A)+ sup(B)-sup(A \cup B)}$	
-\end{center}
-	
 
 
 \section{Resultados técnicos esperados}
+\subsection{Preprocesamiento}
+En este apartado, describimos cómo preprocesamos las bases previo a introducirlas en el algoritmo de generación de reglas de asociación.\\
+
+Comenzamos aplanando la base, usando MS Access.\\
+
+Removimos de la base aplanada todos aquellos renglones que no tenían transacciones asociadas (entre ellos, 1 Categoría y 16 SubCategorías).\\
+
+Eliminamos las transacciones con cantidades negativas, ya que representan devoluciones. En el anexo se enumeran los Venta\_ID eliminados, que totalizan XXX.\\
+
+Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas.\\
+
+Separamos el campo DescAdic, utilizando (descripción del algoritmo usado por Robert) Determinamos que casi toda la información contenida en este campo se encuentra codificada dentro de Prod\_ID, por lo que decidimos no trabajar a la hora de generar reglas con DescAdic.\\
+
+Como medida de volumen, decidimos trabajar con el campo Cantidad UM1.\\
+
+Clasificamos los clientes siguiendo tres ejes: la cantidad de compras realizadas, el gasto incurrido en las mismas, y la categoría de los productos que compran. Para las dos primeras clasificaciones, utilizamos tres categorías para cada una, a saber:\\
+
+Cantidad de transacciones. Muy Frecuente: > = 14 transacciones (una compra por mes en promedio o más); Frecuente entre 7 y 13 (una compra cada dos meses o más); Poco Frecuente < = 7 (menos de una compra cada dos meses).\\
+
+Gasto. Gasto Alto > = \$ 500.000. Gasto Medio entre \$ 100.000 y \$ 499.999. Gasto Bajo < = \$ 100.000.\\
+
+Adicionalmente, determinamos su rubro (o rubros), a partir de los productos que compran, agrupados por categoría de acuerdo al siguiente esquema:\\
+
+Los clientes que compraron un 50\% o más de productos (COUNT DISTINCT Prod\_ID \& Venta\_ID) de una misma categoría, se clasifican con esa categoría.\\
+
+A los clientes que no entran en la clasificación anterior, si entre las dos categorías mayoritarias suman más del 80\%, se utilizan ambas para su clasificación. Si no, se los clasifica como POLIRUBRO.\\
+
+\subsection{Software utilizado}
+En la elaboración del presente trabajo, se usaron gran variedad de herramientas de análisis de datos.El preprocesamiento de los datos se hizo conjuntamente con las herramientas Microsoft Excel, Microsoft Access y QlikView. \\
+Para la la generación y evaluación de las reglas presentadas en este trabajo se exporaron las herramientas \textit{Weka} \cite{Weka1} y \textit{R} \cite{RCran}. Dada la flexibilidad de programación del software estadístico \textit{R}, se optó por este último. En dicho software, se implementaron los códigos necesarios para la generación de los conjuntos de datos en el formato requerido por el algoritmo, el cálculo de las medidas de interés adicionales y la poda de las reglas.
+
+\subsection{Justificación de la elección de los parámetros del algoritmo}
+La determinación del minsup se realizó a partir del análisis exploratorio de los datos (Mostrar una tabla de frecuencia o gráfico que vincule la cantidad de ítems por nivel de SUP).\\
+
+La de la confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba.\\
+
+Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear dos medidas más para seleccionar reglas interesantes: Kulc e IR. Las consideramos apropiadas dado que cumplen con la null-invariance property, que consiste en no verse afectadas ante la presencia de transacciones nulas. Una transacción es nula cuando no contiene ninguno de los ítems del ítemsets en análisis.
+
+\subsection{Criterio para la selección de los resultados no técnicos}
+
+Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas \cite{Tan:2005:IDM:1095618}. Con la ayuda de las medidas adicionales, se determinaron las reglas más interesantes para kas categorías, subcategorías, etc. 
+
+\subsubsection{Medidas adicionales}
+Las medidas que fueron elegidas, tienen la propiedad de ser \textit{null-invariantes}, es decir que no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
+
+Medida coseno:
+
+\begin{center}
+	$cosine(A,B) = \sqrt{P(A|B) P(B|A})$
+	\end{center}
+	
+	Medida de Kulczynsky:
+	
+	\begin{center}
+		$Kulc(A,B)= \frac{1}{2}\left(P(A|B) P(B|A)\right)$	
+		\end{center}
+		
+		Razón de desbalanceo:
+		
+		\begin{center}
+			$IR = \frac{|sup(A)- sup(B)|}{sup(A)+ sup(B)-sup(A \cup B)}$	
+			\end{center}
+
+
 
 \section{Resultados no técnicos esperados}
+
+
+\subsection{Características más habituales de las ventas de la empresa}
+
+\subsection{Reglas generadas a partir de las variables demográficas}
+
+\subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
+
+\subsection{Reglas generadas de un año a otro}
 
 \section{Bonus}
 
