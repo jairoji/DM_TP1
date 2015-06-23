@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{float}
+\usepackage{listings}
 
 %opening
 \title{Trabajo Práctico 1}
@@ -31,7 +32,42 @@ Eliminamos las transacciones con cantidades negativas, ya que representan devolu
 
 Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas.\\
 
-Separamos el campo DescAdic, utilizando (descripción del algoritmo usado por Robert) Determinamos que casi toda la información contenida en este campo se encuentra codificada dentro de Prod\_ID, por lo que decidimos no trabajar a la hora de generar reglas con DescAdic.\\
+Separamos el campo DescAdic, utilizando el siguiente procedimiento:\\
+
+\begin{enumerate}
+	\item Realización de un query para sacar la categoría y subcategoría por producto con las descripciones generales y adicionales, estas últimas son las que vamos a separar en una tabla nueva que contendrá un registro por cada atributo con su valor asociado con la subcategoría.\\
+	
+\begin{lstlisting}[
+language=SQL,
+showspaces=false,
+basicstyle=\ttfamily,
+commentstyle=\color{gray},
+breaklines=true
+]
+SELECT TP_Categoria.Cat_ID, TP_Categoria.Cat_Desc, TP_Sub_Categoria.SubCat_ID, TP_Sub_Categoria.SubCat_Desc, TP_Productos.DescGen, TP_Productos.DescAdic
+FROM TP_Sub_Categoria INNER JOIN (TP_Categoria INNER JOIN TP_Productos ON TP_Categoria.Cat_ID = TP_Productos.Cat_ID) ON TP_Sub_Categoria.SubCat_ID = TP_Productos.SubCat_ID;
+
+\end{lstlisting}
+
+	\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:\\
+	\begin{center}
+		\textit{Nombre del Atributo: Valor del Atributo}		
+	\end{center}
+	
+	\item Realización de un script (Ver Anexos) para generar un csv con los nuevos registros para la tabla TP\_MarcaAtributos en R.\\
+	
+	\item Creación de la tabla en Access con las siguientes columnas:
+	\begin{itemize}
+		\item marca\_ID
+		\item marca\_Nombre
+		\item marca\_AtributoNombre
+		\item marca\_AtributoValor
+		\item SubCat\_ID	
+	\end{itemize}	
+
+\end{enumerate}
+
+Determinamos que casi toda la información contenida en este campo se encuentra codificada dentro de Prod\_ID, por lo que decidimos no trabajar a la hora de generar reglas con DescAdic.\\
 
 Como medida de volumen, decidimos trabajar con el campo Cantidad UM1.\\
 
