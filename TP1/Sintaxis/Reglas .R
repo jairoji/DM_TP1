@@ -42,6 +42,7 @@ library(reshape)
 library(arules)
 library(DiscriMiner)
 
+
 #datos = read.xlsx("TP1_DM - Base Consolidada.xlsx", sheetIndex = 1)
 datos = read.csv("TP1_DM - Base Consolidada_SINNEGATIVOS.csv", sep = ",", encoding = 'UTF-8')
 datos[["Fecha"]] = as.Date(datos[["Fecha"]], "%d/%m/%Y")
@@ -52,6 +53,9 @@ datos[["Fecha"]] = as.Date(datos[["Fecha"]], "%d/%m/%Y")
 Info.clientes = unique(datos[,c("Venta_ID", "CLI_Gasto", "CLI_Compras", "CLI_CAT_DESC")])
 Info.clientes.bin = as.data.frame(binarize(Info.clientes[,c("CLI_Gasto", "CLI_Compras", "CLI_CAT_DESC")]))
 
+####################
+Info.Demograficas = unique(datos[,c("Venta_ID", "cli_Loc", "CLI_Prv")])
+Info.Demograficas = as.data.frame(binarize(Info.Demograficas[,c("cli_Loc", "CLI_Prv")]))
 
 Producto = datos[,c("Venta_ID", "Prod_ID", "SubCat_Desc", "Cat_Desc", "DescGen")]
 Producto[,"Venta_ID"] = as.factor(Producto[,"Venta_ID"])
@@ -93,7 +97,7 @@ reglas.DescGen.prunned = data.frame.rules(reglas.DescGen)
 
 rm(reglas.producto, medidas.cat, medidas.SubCat, medidas.DescGen, 
    medidas.Prod, reglas.DescGen, reglas.Cat, reglas.SubCat, 
-   Cat.table, DescGen.table, Producto.table, reglas.producto.subset.prunned, Info.clientes)
+   Cat.table, DescGen.table, Producto.table, Info.clientes)
 
 write.xlsx(reglas.Cat.prunned, file = "1_ReglasSup0_005.xlsx", sheetName = "Categoría", row.names = F)
 write.xlsx(reglas.SubCat.prunned, file = "1_ReglasSup0_005.xlsx", sheetName = "SubCategoría", row.names = F, append = T)
@@ -151,7 +155,43 @@ write.xlsx(Cat.rules.cliente, "3_2_Reglas_cliente_2015.xlsx", sheetName = "Categ
 
 
 
+###################### Demográficas
 
+
+Prod.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID", "Prod_ID")])), Info.Demograficas))
+Prod.table = as(Prod.table, "transactions")
+DescGen.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID", "DescGen")])), Info.Demograficas))
+DescGen.table = as(DescGen.table, "transactions")
+SubCat.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID", "SubCat_Desc")])), Info.Demograficas))
+SubCat.table = as(SubCat.table, "transactions")
+Cat.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID", "Cat_Desc")])), Info.Demograficas))
+Cat.table = as(Cat.table, "transactions")
+
+###Reglas para todos los grupos
+
+Prod.rules.Demograficas = apriori(Prod.table, parameter = list(supp = 0.005, conf = 0.6))
+DescGen.rules.Demograficas = apriori(DescGen.table, parameter = list(supp = 0.005, conf = 0.6))
+SubCat.rules.Demograficas = apriori(SubCat.table, parameter = list(supp = 0.005, conf = 0.6))
+Cat.rules.Demograficas = apriori(Cat.table, parameter = list(supp = 0.005, conf = 0.6))
+
+###Agregando medidas para las reglas
+quality(Prod.rules.Demograficas) = cbind(quality(Prod.rules.Demograficas), Important.measures(Prod.rules.Demograficas, Prod.table))
+quality(DescGen.rules.Demograficas) = cbind(quality(DescGen.rules.Demograficas), Important.measures(DescGen.rules.Demograficas, DescGen.table))
+quality(SubCat.rules.Demograficas) = cbind(quality(SubCat.rules.Demograficas), Important.measures(SubCat.rules.Demograficas, SubCat.table))
+quality(Cat.rules.Demograficas) = cbind(quality(Cat.rules.Demograficas), Important.measures(Cat.rules.Demograficas, Cat.table))
+
+###Podando reglas
+Prod.rules.Demograficas = data.frame.rules(Prod.rules.Demograficas)
+DescGen.rules.Demograficas = data.frame.rules(DescGen.rules.Demograficas)
+SubCat.rules.Demograficas = data.frame.rules(SubCat.rules.Demograficas)
+Cat.rules.Demograficas = data.frame.rules(Cat.rules.Demograficas)
+
+###Escribiendolas en un archivo xlsx
+write.xlsx(Prod.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Producto", row.names = F)
+write.xlsx(DescGen.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Descripción General", row.names = F, append = T)
+write.xlsx(SubCat.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Subcategoría", row.names = F, append = T)
+write.xlsx(Cat.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Categoría", row.names = F, append = T)
+1
 
 
 
