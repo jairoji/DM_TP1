@@ -191,16 +191,20 @@ write.xlsx(Prod.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "P
 write.xlsx(DescGen.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Descripción General", row.names = F, append = T)
 write.xlsx(SubCat.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Subcategoría", row.names = F, append = T)
 write.xlsx(Cat.rules.Demograficas, "4_Reglas_Demograficas.xlsx", sheetName = "Categoría", row.names = F, append = T)
-1
 
+reglas.existentes.prod = is.element(Prod.rules.Demograficas[,"rules"], reglas.producto.prunned[,"rules"])
+Nuevas.reglas.producto = Prod.rules.Demograficas[!reglas.existentes.prod,]
+reglas.existentes.DescGen = is.element(DescGen.rules.Demograficas[,"rules"], reglas.DescGen.prunned[,"rules"])
+Nuevas.reglas.DescGen = DescGen.rules.Demograficas[!reglas.existentes.DescGen,]
+reglas.existentes.SubCat = is.element(SubCat.rules.Demograficas[["rules"]], reglas.SubCat.prunned[["rules"]])
+Nuevas.reglas.SubCat = SubCat.rules.Demograficas[!reglas.existentes.SubCat,]
+reglas.existentes.Cat = is.element(Cat.rules.Demograficas[["rules"]], reglas.Cat.prunned[["rules"]])
+Nuevas.reglas.Cat = Cat.rules.Demograficas[!reglas.existentes.Cat,]
 
-
-
-
-
-
-
-
+write.xlsx(Nuevas.reglas.producto, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Producto", row.names = F)
+write.xlsx(Nuevas.reglas.DescGen, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Descripción General", row.names = F, append = T)
+write.xlsx(Nuevas.reglas.SubCat, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Subcategoría", row.names = F, append = T)
+write.xlsx(Nuevas.reglas.Cat, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Categoría", row.names = F, append = T)
 
 
 
