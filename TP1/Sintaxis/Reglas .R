@@ -41,7 +41,7 @@ library(xlsx)
 library(reshape)
 library(arules)
 library(DiscriMiner)
-
+library(arulesViz)
 
 #datos = read.xlsx("TP1_DM - Base Consolidada.xlsx", sheetIndex = 1)
 datos = read.csv("TP1_DM - Base Consolidada_SINNEGATIVOS.csv", sep = ",", encoding = 'UTF-8')
@@ -200,6 +200,103 @@ reglas.existentes.SubCat = is.element(SubCat.rules.Demograficas[["rules"]], regl
 Nuevas.reglas.SubCat = SubCat.rules.Demograficas[!reglas.existentes.SubCat,]
 reglas.existentes.Cat = is.element(Cat.rules.Demograficas[["rules"]], reglas.Cat.prunned[["rules"]])
 Nuevas.reglas.Cat = Cat.rules.Demograficas[!reglas.existentes.Cat,]
+
+library(stringr)
+#####Para Producto
+Prod.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Nuevas.reglas.producto[["rules"]]), "=>")))[,2]
+Prod.rules.Demograficas.rhs = str_replace_all(Prod.rules.Demograficas.rhs, "[{}]", "")
+Prod.rules.Demograficas.rhs = str_replace(Prod.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(Prod.rules.Demograficas.rhs, unique(c(as.character(Info.Demograficas[["cli_Loc"]]), as.character(Info.Demograficas[["CLI_Prv"]]))))
+Prod.rules.Demograficas.No.Loc = Nuevas.reglas.producto[!to.remove,]
+Prod.rules.Demograficas.Final = subset(Prod.rules.Demograficas.No.Loc, Kulczinsky > 0.6 | Kulczinsky <0.4)
+Reglas.Prod.Final = is.element(as(Prod.rules.Demograficas, "data.frame")[,1], Prod.rules.Demograficas.Final[["rules"]])
+plot(Prod.rules.Demograficas[Reglas.Prod.Final], method="paracoord", , control = list(main = "Reglas demográficas producto"))
+
+#####Para DescGen
+DescGen.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Nuevas.reglas.DescGen[["rules"]]), "=>")))[,2]
+DescGen.rules.Demograficas.rhs = str_replace_all(DescGen.rules.Demograficas.rhs, "[{}]", "")
+DescGen.rules.Demograficas.rhs = str_replace(DescGen.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(DescGen.rules.Demograficas.rhs, unique(c(as.character(Info.Demograficas[["cli_Loc"]]), as.character(Info.Demograficas[["CLI_Prv"]]))))
+DescGen.rules.Demograficas.No.Loc = Nuevas.reglas.DescGen[!to.remove,]
+DescGen.rules.Demograficas.Final = subset(DescGen.rules.Demograficas.No.Loc, Kulczinsky > 0.6 | Kulczinsky <0.4)
+Reglas.DescGen.Final = is.element(as(DescGen.rules.Demograficas, "data.frame")[,1], DescGen.rules.Demograficas.Final[["rules"]])
+plot(DescGen.rules.Demograficas[Reglas.DescGen.Final], method="paracoord", , control = list(main = "Reglas demográficas descripción general"))
+
+#####Para SubCategoría
+SubCat.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Nuevas.reglas.SubCat[["rules"]]), "=>")))[,2]
+SubCat.rules.Demograficas.rhs = str_replace_all(SubCat.rules.Demograficas.rhs, "[{}]", "")
+SubCat.rules.Demograficas.rhs = str_replace(SubCat.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(SubCat.rules.Demograficas.rhs, unique(c(as.character(Info.Demograficas[["cli_Loc"]]), as.character(Info.Demograficas[["CLI_Prv"]]))))
+SubCat.rules.Demograficas.No.Loc = Nuevas.reglas.SubCat[!to.remove,]
+SubCat.rules.Demograficas.Final = subset(SubCat.rules.Demograficas.No.Loc, Kulczinsky > 0.6 | Kulczinsky <0.4)
+Reglas.SubCat.Final = is.element(as(SubCat.rules.Demograficas, "data.frame")[,1], SubCat.rules.Demograficas.Final[["rules"]])
+plot(SubCat.rules.Demograficas[Reglas.SubCat.Final], method="paracoord", control = list(main = "Reglas demográficas subcategoría"))
+
+#####Para Categoría
+Cat.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Nuevas.reglas.Cat[["rules"]]), "=>")))[,2]
+Cat.rules.Demograficas.rhs = str_replace_all(Cat.rules.Demograficas.rhs, "[{}]", "")
+Cat.rules.Demograficas.rhs = str_replace(Cat.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(Cat.rules.Demograficas.rhs, unique(c(as.character(Info.Demograficas[["cli_Loc"]]), as.character(Info.Demograficas[["CLI_Prv"]]))))
+Cat.rules.Demograficas.No.Loc = Nuevas.reglas.Cat[!to.remove,]
+Cat.rules.Demograficas.Final = subset(Cat.rules.Demograficas.No.Loc, Kulczinsky > 0.6 | Kulczinsky <0.4)
+Reglas.Cat.Final = is.element(as(Cat.rules.Demograficas, "data.frame")[,1], Cat.rules.Demograficas.Final[["rules"]])
+plot(Cat.rules.Demograficas[Reglas.Cat.Final], method="paracoord", control = list(main = "Reglas demográficas categoría"))
+
+png("4_1_Reglas.demograficas_prod.png", width = 800, height = 600)
+plot(Prod.rules.Demograficas[Reglas.Prod.Final], method="paracoord", , control = list(main = "Reglas demográficas producto"))
+dev.off()
+
+png("4_2_Reglas.demograficas_DescGen.png", width = 800, height = 600)
+plot(DescGen.rules.Demograficas[Reglas.DescGen.Final], method="paracoord", , control = list(main = "Reglas demográficas descripción general"))
+dev.off()
+
+png("4_3_Reglas.demograficas_SubCat.png", width = 800, height = 600)
+plot(SubCat.rules.Demograficas[Reglas.SubCat.Final], method="paracoord", control = list(main = "Reglas demográficas subcategoría"))
+dev.off()
+
+png("4_4_Reglas.demograficas_Cat.png", width = 800, height = 600)
+plot(Cat.rules.Demograficas[Reglas.Cat.Final], method="paracoord", control = list(main = "Reglas demográficas categoría"))
+dev.off()
+
+
+
+
+
+
+
+inspect(Cat.rules.Demograficas[Reglas.Cat.Final]@rhs)
+
+View(as(Cat.rules.Demograficas[Reglas.Cat.Final], "data.frame"))
+
+
+
+
+rownames(Nuevas.reglas.producto) = 1:nrow(Nuevas.reglas.producto)
+#Prod.rules.Demograficas = sort(Prod.rules.Demograficas, by = support)
+Prod.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Nuevas.reglas.producto[["rules"]]), "=>")))[,2]
+Prod.rules.Demograficas.rhs = str_replace_all(Prod.rules.Demograficas.rhs, "[{}]", "")
+Prod.rules.Demograficas.rhs = str_replace(Prod.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(Prod.rules.Demograficas.rhs, unique(c(as.character(Info.Demograficas[["cli_Loc"]]), as.character(Info.Demograficas[["CLI_Prv"]]))))
+Prod.rules.Demograficas.No.Loc = Nuevas.reglas.producto[!to.remove,]
+asda = subset(Prod.rules.Demograficas.No.Loc, Kulczinsky > 0.6 | Kulczinsky <0.4)
+asda = as(asda, "rules")
+
+
+
+View(asda)
+
+Prod.rules.Demograficas.rhs = t(as.data.frame(strsplit(as.character(Prod.rules.Demograficas.No.Loc[["rules"]]), "=>")))[,2]
+Prod.rules.Demograficas.rhs = str_replace_all(Prod.rules.Demograficas.rhs, "[{}]", "")
+Prod.rules.Demograficas.rhs = str_replace_all(Prod.rules.Demograficas.rhs, "[ ]", "")
+to.remove = is.element(Prod.rules.Demograficas.rhs, as.character(Info.Demograficas[["CLI_Prv"]]))
+Prod.rules.Demograficas.No.Loc.No.Prv = Prod.rules.Demograficas.No.Loc[!to.remove,]
+
+cbind(Prod.rules.Demograficas.rhs, to.remove)
+names(Info.Demograficas)
+
+nrow(Prod.rules.Demograficas.No.Loc)
+
+is.element(fds, as.character(Info.Demograficas[["cli_Loc"]]))
 
 write.xlsx(Nuevas.reglas.producto, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Producto", row.names = F)
 write.xlsx(Nuevas.reglas.DescGen, "4_Reglas_Demograficas_Nuevas.xlsx", sheetName = "Descripción General", row.names = F, append = T)
