@@ -134,9 +134,9 @@ Razón de desbalanceo:
 
 
 \subsection{Reglas generadas a partir de las variables demográficas}
-En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la ciudad de Buenos Aires.\\
+En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la localidad y la provincia de Buenos Aires.\\
 
- En cuanto a los demás grupos, las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran. Tabla  \ref{Tab_Reg_Demog}
+ En cuanto a los demás grupos (Descripción general, subcategoría y categoría), las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran, como por ejemplo el caso del jarro térmico en la provincia de Buenos Aires y el termo. Tabla  \ref{Tab_Reg_Demog}
  
  \newgeometry{left=3cm,bottom=0.1cm}
  \begin{landscape}
@@ -145,7 +145,7 @@ En general las relaciones existentes entre las variables demográficas y los pro
  		\caption{Reglas con información demográfica}
  		\label{Tab_Reg_Demog}
  		\begin{tabular}{lllllllll}
- 			\textbf{Reglas}                                     & \textbf{support} & \textbf{confidence}& \textbf{lift} & \textbf{cosine}  & \textbf{Kulczinsky}  & \textbf{IR} & \textbf{Grupo}                &  \\
+ 			\textbf{Reglas}                                     & \textbf{Soporte} & \textbf{Confianza}& \textbf{Lift} & \textbf{Coseno}  & \textbf{Kulczinsky}  & \textbf{IR} & \textbf{Grupo}                &  \\
  			\hline
  			BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC  & 0,006   & 1,000      & 48,438 & 0,526  & 0,638      & 0,723 & Producto            &  \\
  			BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,C.A.B.A.-Loc =\textgreater BTP4S79-5SC          & 0,005   & 1,000      & 48,438 & 0,504  & 0,627      & 0,746 & Producto            &  \\
