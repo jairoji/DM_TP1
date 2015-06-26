@@ -8,7 +8,7 @@
 %opening
 \title{Trabajo Práctico 1}
 \author{Nicolás Muschitiello \\
-	Roberto Velez\\
+	Roberto Vélez\\
 	Jairo Jiménez
 	}
 
@@ -23,95 +23,101 @@
 
 \section{Resultados técnicos esperados}
 \subsection{Preprocesamiento}
-En este apartado, describimos cómo preprocesamos las bases previo a introducirlas en el algoritmo de generación de reglas de asociación.\\
-
-Comenzamos aplanando la base, usando MS Access.\\
-
-Removimos de la base aplanada todos aquellos renglones que no tenían transacciones asociadas (entre ellos, 1 Categoría y 16 SubCategorías).\\
-
-Eliminamos las transacciones con cantidades negativas, ya que representan devoluciones. En el anexo se enumeran los Venta\_ID eliminados, que totalizan XXX.\\
-
-Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas.\\
-
-Separamos el campo DescAdic, utilizando el siguiente procedimiento:\\
-
-\begin{enumerate}
-	\item Realización de un query para sacar la categoría y subcategoría por producto con las descripciones generales y adicionales, estas últimas son las que vamos a separar en una tabla nueva que contendrá un registro por cada atributo con su valor asociado con la subcategoría.\\
+En este apartado, describimos cómo preprocesamos las bases previo a introducirlas en el algoritmo de generación de reglas de asociación:\\
+\begin{itemize}
+	\item Comenzamos aplanando la base, usando MS Access
+	\item Removimos de la base aplanada todos aquellos renglones que no tenían transacciones asociadas (entre ellos, 1 Categoría y 16 SubCategorías)
+	\item Eliminamos las transacciones con cantidades negativas, ya que representan devoluciones que totalizan 363
+	\item Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas
+	\item Separamos el campo DescAdic, utilizando el siguiente procedimiento:
+	\begin{enumerate}
+		\item Realización de un query para sacar la categoría y subcategoría por producto con las descripciones generales y adicionales, estas últimas son las que vamos a separar en una tabla nueva que contendrá un registro por cada atributo con su valor asociado con la subcategoría
+		
+		\begin{lstlisting}[
+		language=SQL,
+		showspaces=false,
+		basicstyle=\ttfamily,
+		commentstyle=\color{gray},
+		breaklines=true
+		]
+		SELECT TP_Categoria.Cat_ID, TP_Categoria.Cat_Desc, TP_Sub_Categoria.SubCat_ID, TP_Sub_Categoria.SubCat_Desc, TP_Productos.DescGen, TP_Productos.DescAdic
+		FROM TP_Sub_Categoria INNER JOIN (TP_Categoria INNER JOIN TP_Productos ON TP_Categoria.Cat_ID = TP_Productos.Cat_ID) ON TP_Sub_Categoria.SubCat_ID = TP_Productos.SubCat_ID;
+		
+		\end{lstlisting}
+		
+		\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:\\
+		\begin{center}
+			\textit{Nombre del Atributo: Valor del Atributo}		
+		\end{center}
+		
+		\item Realización de un script (Ver Anexos) para generar un csv con los nuevos registros para la tabla TP\_MarcaAtributos en R.\\
+		
+		\item Creación de la tabla en Access con las siguientes columnas:
+		\begin{itemize}
+			\item marca\_ID
+			\item marca\_Nombre
+			\item marca\_AtributoNombre
+			\item marca\_AtributoValor
+			\item SubCat\_ID	
+		\end{itemize}	
+		
+	\end{enumerate}
 	
-\begin{lstlisting}[
-language=SQL,
-showspaces=false,
-basicstyle=\ttfamily,
-commentstyle=\color{gray},
-breaklines=true
-]
-SELECT TP_Categoria.Cat_ID, TP_Categoria.Cat_Desc, TP_Sub_Categoria.SubCat_ID, TP_Sub_Categoria.SubCat_Desc, TP_Productos.DescGen, TP_Productos.DescAdic
-FROM TP_Sub_Categoria INNER JOIN (TP_Categoria INNER JOIN TP_Productos ON TP_Categoria.Cat_ID = TP_Productos.Cat_ID) ON TP_Sub_Categoria.SubCat_ID = TP_Productos.SubCat_ID;
-
-\end{lstlisting}
-
-	\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:\\
-	\begin{center}
-		\textit{Nombre del Atributo: Valor del Atributo}		
-	\end{center}
 	
-	\item Realización de un script (Ver Anexos) para generar un csv con los nuevos registros para la tabla TP\_MarcaAtributos en R.\\
-	
-	\item Creación de la tabla en Access con las siguientes columnas:
-	\begin{itemize}
-		\item marca\_ID
-		\item marca\_Nombre
-		\item marca\_AtributoNombre
-		\item marca\_AtributoValor
-		\item SubCat\_ID	
-	\end{itemize}	
+\end{itemize}
 
-\end{enumerate}
+
 
 Determinamos que casi toda la información contenida en este campo se encuentra codificada dentro de Prod\_ID, por lo que decidimos no trabajar a la hora de generar reglas con DescAdic.\\
 
-Como medida de volumen, decidimos trabajar con el campo Cantidad UM1.\\
+\begin{itemize}
+	\item Como medida de volumen, decidimos trabajar con el campo Cantidad UM1
+	\item Clasificamos los clientes siguiendo tres ejes: la cantidad de compras realizadas, el gasto incurrido en las mismas, y la categoría de los productos que compran. Para las dos primeras clasificaciones, utilizamos tres categorías para cada una, a saber:
+	
+	\begin{itemize}
+		\item Cantidad de transacciones. Muy Frecuente: $\geq$ 14 transacciones (una compra por mes en promedio o más); Frecuente entre 7 y 13 (una compra cada dos meses o más); Poco Frecuente $<$ 7 (menos de una compra cada dos meses)
+		\item Gasto. Gasto Alto $\geq$ \$ 500.000. Gasto Medio entre \$ 100.000 y \$ 499.999. Gasto Bajo $<$ \$ 100.000.
+		\item Adicionalmente, determinamos su rubro (o rubros), a partir de los productos que compran, agrupados por categoría de acuerdo al siguiente esquema:
+		\begin{itemize}
+			\item Los clientes que compraron un 50\% o más de productos (COUNT DISTINCT Prod\_ID \& Venta\_ID) de una misma categoría, se clasifican con esa categoría
+			
+			\item A los clientes que no entran en la clasificación anterior, si entre las dos categorías mayoritarias suman más del 80\%, se utilizan ambas para su clasificación. Si no, se los clasifica como POLIRUBRO
+		\end{itemize}
+	\end{itemize}
 
-Clasificamos los clientes siguiendo tres ejes: la cantidad de compras realizadas, el gasto incurrido en las mismas, y la categoría de los productos que compran. Para las dos primeras clasificaciones, utilizamos tres categorías para cada una, a saber:\\
+\end{itemize}
 
-Cantidad de transacciones. Muy Frecuente: > = 14 transacciones (una compra por mes en promedio o más); Frecuente entre 7 y 13 (una compra cada dos meses o más); Poco Frecuente < = 7 (menos de una compra cada dos meses).\\
 
-Gasto. Gasto Alto > = \$ 500.000. Gasto Medio entre \$ 100.000 y \$ 499.999. Gasto Bajo < = \$ 100.000.\\
-
-Adicionalmente, determinamos su rubro (o rubros), a partir de los productos que compran, agrupados por categoría de acuerdo al siguiente esquema:\\
-
-Los clientes que compraron un 50\% o más de productos (COUNT DISTINCT Prod\_ID \& Venta\_ID) de una misma categoría, se clasifican con esa categoría.\\
-
-A los clientes que no entran en la clasificación anterior, si entre las dos categorías mayoritarias suman más del 80\%, se utilizan ambas para su clasificación. Si no, se los clasifica como POLIRUBRO.\\
 
 \subsection{Software utilizado}
-En la elaboración del presente trabajo, se usaron gran variedad de herramientas de análisis de datos.El preprocesamiento de los datos se hizo conjuntamente con las herramientas Microsoft Excel, Microsoft Access y QlikView. \\
-Para la la generación y evaluación de las reglas presentadas en este trabajo se exporaron las herramientas \textit{Weka} \cite{Weka1} y \textit{R} \cite{RCran}. Dada la flexibilidad de programación del software estadístico \textit{R}, se optó por este último. En dicho software, se implementaron los códigos necesarios para la generación de los conjuntos de datos en el formato requerido por el algoritmo, el cálculo de las medidas de interés adicionales y la poda de las reglas.
+En la elaboración del presente trabajo, se usaron gran variedad de herramientas de análisis de datos.El preprocesamiento de los datos se hizo conjuntamente con las herramientas Microsoft Excel, Microsoft Access y QlikView.\\
+
+Para la la generación y evaluación de las reglas presentadas en este trabajo se exporaron las herramientas \textit{Weka} \cite{Weka1} y \textit{R} \cite{RCran}. Dada la flexibilidad de programación del software estadístico \textit{R}, se optó por este último.\\
+ 
+En dicho software, se implementaron los códigos necesarios para la generación de los conjuntos de datos en el formato requerido por el algoritmo, el cálculo de las medidas de interés adicionales y la poda de las reglas.
 
 \subsection{Justificación de la elección de los parámetros del algoritmo}
-La determinación del minsup se realizó a partir del análisis exploratorio de los datos (Mostrar una tabla de frecuencia o gráfico que vincule la cantidad de ítems por nivel de SUP).\\
+La determinación del minsup se realizó a partir del análisis exploratorio de los datos.La confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba.\\
 
-La de la confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba.\\
-
-Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear dos medidas más para seleccionar reglas interesantes: Kulc e IR. Las consideramos apropiadas dado que cumplen con la null-invariance property, que consiste en no verse afectadas ante la presencia de transacciones nulas. Una transacción es nula cuando no contiene ninguno de los ítems del ítemsets en análisis.
-
+Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear otras medidas, las cuales se presentan en el apartado \huge{\textbf{referenciar la seccion de las medidas}} 
+\normalsize
 \subsection{Criterio para la selección de los resultados no técnicos}
 
-Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas \cite{Tan:2005:IDM:1095618}. Con la ayuda de las medidas adicionales, se determinaron las reglas más interesantes para kas categorías, subcategorías, etc. 
+Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas \cite{Tan:2005:IDM:1095618}. Con la ayuda de éstas, se determinaron las reglas más interesantes para las categorías, subcategorías, etc. 
 
 \subsubsection{Medidas adicionales}
-Las medidas que fueron elegidas, tienen la propiedad de ser \textit{null-invariantes}, es decir que no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
+Las medidas que fueron elegidas, tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
 
 Medida coseno:
 
 \begin{center}
-	$cosine(A,B) = \sqrt{P(A|B) P(B|A})$
+	$cosine(A,B) = \sqrt{P(A|B) \times P(B|A})$
 \end{center}
 	
 Medida de Kulczynsky:
 	
 	\begin{center}
-	$Kulc(A,B)= \frac{1}{2}\left(P(A|B) P(B|A)\right)$	
+	$Kulc(A,B)= \frac{1}{2}\left(P(A|B) + P(B|A)\right)$	
 \end{center}
 		
 Razón de desbalanceo:
@@ -125,11 +131,61 @@ Razón de desbalanceo:
 
 \subsection{Características más habituales de las ventas de la empresa}
 
+
 \subsection{Reglas generadas a partir de las variables demográficas}
 
 \subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
 
 \subsection{Reglas generadas de un año a otro}
+Las siguientes reglas presentadas a continuación fueron tomadas con las siguientes condiciones:\\
+\begin{itemize}
+	\item El periodo de comparación fue todo el 2014 con respecto a los meses de marzo a Mayo del 2015\\
+	\item Las reglas generadas y catalogadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.\\
+\end{itemize}
+
+Es muy probable que tomando el mismo periodo de meses del 2015 para el 2014 resulten en mayor cantidad de reglas similares en caso de existir comportamientos de venta en común.\\
+
+\begin{landscape}
+	% Table generated by Excel2LaTeX from sheet 'ReglasProducto2015'
+	\begin{table}[htbp]
+		\centering
+		\caption{Reglas por Año}
+		\begin{tabular}{lrrrrrrr}
+			\huge Reglas & \multicolumn{1}{c}{support} & \multicolumn{1}{c}{confidence} & \multicolumn{1}{c}{lift} & \multicolumn{1}{c}{chiSquared} & \multicolumn{1}{c}{cosine} & \multicolumn{1}{c}{Kulczinsky} & \multicolumn{1}{c}{IR} \\
+			\hline	
+			{Gasto Alto} =\textgreater {Muy Frecuente} & 0.394919 & 0.989869754 & 1.588929 & 658.8846364 & 0.792148 & 0.811895025 & 0.357274 \\
+			{LCM1406NG,Muy Frecuente} =\textgreater {LCM1406NR} & 0.008661 & 1     & 49.48571 & 733.6394043 & 0.654654 & 0.714285714 & 0.571429 \\
+			{MG1970,CASA DE OPTICA} =\textgreater {MG1968} & 0.008083 & 1     & 52.48485 & 726.6615868 & 0.651339 & 0.712121212 & 0.575758 \\
+			{MG1968,Gasto Bajo} =\textgreater {MG1970} & 0.009238 & 0.888888889 & 49.66308 & 784.9937245 & 0.677334 & 0.702508961 & 0.393939 \\
+			{Muy Frecuente,CASA DE PESCA} =\textgreater {Gasto Alto} & 0.245958 & 0.742160279 & 1.860234 & 421.7077793 & 0.676417 & 0.679329054 & 0.139452 \\
+			{BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Muy Frecuente} =\textgreater {BTP4S79-5SC} & 0.01097 & 0.95  & 30.47037 & 565.5188873 & 0.578152 & 0.650925926 & 0.618182 \\
+			{BTP4S79-75BLC,BTP4S79-75RC,Muy Frecuente} =\textgreater {BTP4S79-75SC} & 0.021363 & 0.860465116 & 17.32937 & 614.3191105 & 0.608441 & 0.645348837 & 0.467391 \\
+			{BTP4S79-5RC,BTP4S79-75BLC,BTP4S79-75SC,Muy Frecuente} =\textgreater {BTP4S79-5SC} & 0.010393 & 0.947368421 & 30.38596 & 533.8581048 & 0.561951 & 0.640350877 & 0.636364 \\
+			{LCM1406NR,CASA DE PESCA} =\textgreater {LCM1406NB} & 0.006928 & 0.923076923 & 47.02262 & 555.5195607 & 0.570782 & 0.63800905 & 0.6 \\
+			{LCM1406NG,Muy Frecuente} =\textgreater {LCM1406NS} & 0.007506 & 0.866666667 & 46.90833 & 600.2787385 & 0.593366 & 0.636458333 & 0.5 \\
+			{BTP4S79-75RC,BTP4S79-75SC,Gasto Medio} =\textgreater {BTP4S79-75BLC} & 0.017321 & 0.9375 & 17.27394 & 495.5050869 & 0.546994 & 0.628324468 & 0.645833 \\
+			{BTP4S79-5RC,BTP4S79-75SC,Muy Frecuente} =\textgreater {BTP4S79-5SC} & 0.01097 & 0.904761905 & 29.0194 & 537.0771176 & 0.564218 & 0.628306878 & 0.589286 \\
+			{LCM1406NG,Muy Frecuente} =\textgreater {LCM1406NB} & 0.007506 & 0.866666667 & 44.14902 & 564.0946071 & 0.57565 & 0.624509804 & 0.527778 \\
+			{BTP4S79-5SC,BTP4S79-75BLC,Muy Frecuente} =\textgreater {BTP4S79-75SC} & 0.011547 & 1     & 20.13953 & 387.2625516 & 0.482243 & 0.61627907 & 0.767442 \\
+			{BTP4S79-75SC,CASA DE CAMPING} =\textgreater {BTP4S79-75BLC} & 0.017321 & 0.882352941 & 16.25782 & 463.3276079 & 0.530662 & 0.600750939 & 0.612245 \\
+			{BTP4S79-5RC,BTP4S79-75RC,CASA DE CAMPING} =\textgreater {BTP4S79-5BLC} & 0.008661 & 0.833333333 & 32.80303 & 479.5421825 & 0.533002 & 0.587121212 & 0.553191 \\
+			{TN4X30-1,Gasto Bajo} =\textgreater {CASA DE OPTICA} & 0.014434 & 0.961538462 & 9.972363 & 226.7555922 & 0.379398 & 0.55561953 & 0.839286 \\
+			{Poco Frecuente,CASA POLIRUBRO} =\textgreater {Gasto Bajo} & 0.011547 & 1     & 4.463918 & 70.08767704 & 0.227038 & 0.525773196 & 0.948454 \\
+			{TN4X30-3,Gasto Bajo} =\textgreater {CASA DE OPTICA} & 0.01097 & 0.904761905 & 9.383519 & 159.4307079 & 0.320838 & 0.50926718 & 0.863905 \\
+			{HPR50600,Gasto Bajo,CASA DE OPTICA} =\textgreater {HPR50360} & 0.006928 & 0.705882353 & 30.56471 & 354.7639184 & 0.460179 & 0.502941176 & 0.511111 \\
+			{INCA200,Gasto Medio,Muy Frecuente} =\textgreater {CASA DE CAMPING} & 0.008083 & 0.875 & 4.735938 & 51.08166831 & 0.195656 & 0.459375 & 0.944099 \\
+			{MG1968,TN4X30-3} =\textgreater {CASA DE OPTICA} & 0.006351 & 0.846153846 & 8.775679 & 84.50729205 & 0.236082 & 0.456011055 & 0.911243 \\
+			{TERRA} =\textgreater {Muy Frecuente} & 0.016166 & 0.848484848 & 1.361979 & 7.283571541 & 0.148385 & 0.437217401 & 0.964945 \\
+			{MG1968,TN4X30-3} =\textgreater {Gasto Bajo} & 0.005774 & 0.769230769 & 3.433783 & 22.39811261 & 0.140803 & 0.397501983 & 0.959079 \\
+			{PATAGONIAPRO} =\textgreater {Gasto Alto} & 0.010393 & 0.75  & 1.879884 & 12.50689906 & 0.139774 & 0.388024602 & 0.956958 \\
+			{Gasto Medio,CASA POLIRUBRO} =\textgreater {Muy Frecuente} & 0.0306 & 0.716216216 & 1.149663 & 2.86109861 & 0.187564 & 0.382667886 & 0.913636 \\
+			{TERRA,Muy Frecuente} =\textgreater {Gasto Alto} & 0.011547 & 0.714285714 & 1.790366 & 11.80103417 & 0.143784 & 0.371614637 & 0.948498 \\			
+		\end{tabular}%
+		\label{tab:addlabel}%
+	\end{table}%	
+\end{landscape}
+
+
 
 \section{Bonus}
 
