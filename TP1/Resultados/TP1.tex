@@ -4,6 +4,7 @@
 \usepackage{float}
 \usepackage{listings}
 \usepackage{pdflscape}
+\usepackage{geometry}
 
 %opening
 \title{Trabajo Práctico 1}
@@ -99,13 +100,13 @@ En dicho software, se implementaron los códigos necesarios para la generación 
 \subsection{Justificación de la elección de los parámetros del algoritmo}
 La determinación del minsup se realizó a partir del análisis exploratorio de los datos.La confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba.\\
 
-Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear otras medidas, las cuales se presentan en el apartado \huge{\textbf{referenciar la seccion de las medidas}} 
-\normalsize
+Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear otras medidas, las cuales se presentan en el apartado \ref{Medidas}
+
 \subsection{Criterio para la selección de los resultados no técnicos}
 
 Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas \cite{Tan:2005:IDM:1095618}. Con la ayuda de éstas, se determinaron las reglas más interesantes para las categorías, subcategorías, etc. 
 
-\subsubsection{Medidas adicionales}
+\subsubsection{Medidas adicionales} \label{Medidas}
 Las medidas que fueron elegidas, tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
 
 Medida coseno:
@@ -133,6 +134,36 @@ Razón de desbalanceo:
 
 
 \subsection{Reglas generadas a partir de las variables demográficas}
+En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la ciudad de Buenos Aires.\\
+
+ En cuanto a los demás grupos, las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran. Tabla  \ref{Tab_Reg_Demog}
+ 
+ \newgeometry{left=3cm,bottom=0.1cm}
+ \begin{landscape}
+ 	\begin{table}[h]
+ 		\centering
+ 		\caption{Reglas con información demográfica}
+ 		\label{Tab_Reg_Demog}
+ 		\begin{tabular}{lllllllll}
+ 			\textbf{Reglas}                                     & \textbf{support} & \textbf{confidence}& \textbf{lift} & \textbf{cosine}  & \textbf{Kulczinsky}  & \textbf{IR} & \textbf{Grupo}                &  \\
+ 			\hline
+ 			BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC  & 0,006   & 1,000      & 48,438 & 0,526  & 0,638      & 0,723 & Producto            &  \\
+ 			BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,C.A.B.A.-Loc =\textgreater BTP4S79-5SC          & 0,005   & 1,000      & 48,438 & 0,504  & 0,627      & 0,746 & Producto            &  \\
+ 			BTP4S79-5BLC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC & 0,006   & 0,972      & 47,093 & 0,512  & 0,621      & 0,718 & Producto            &  \\
+ 			LCM1406NB,Buenos Aires-Prov =\textgreater LCM1406NR                                   & 0,006   & 0,947      & 48,501 & 0,527  & 0,620      & 0,680 & Producto            &  \\
+ 			REELS PEJERREY,REELS VARIADA,C.A.B.A.-Loc =\textgreater CAÑAS TELESC. PEJERREY        & 0,010   & 0,693      & 6,684  & 0,254  & 0,393      & 0,831 & Subcategoría        &  \\
+ 			LINEAS FLY,Capital Federal-Prov =\textgreater CAÑAS FLY                               & 0,006   & 0,609      & 17,363 & 0,328  & 0,393      & 0,638 & Subcategoría        &  \\
+ 			LINEAS FLY,C.A.B.A.-Loc =\textgreater CAÑAS FLY                                       & 0,006   & 0,625      & 17,808 & 0,315  & 0,392      & 0,682 & Subcategoría        &  \\
+ 			REEL CHARGER,Buenos Aires-Prov =\textgreater REEL BELLUS                              & 0,007   & 0,652      & 11,313 & 0,284  & 0,388      & 0,760 & Desc. General &  \\
+ 			BINOCULAR TRAVEL II,C.A.B.A.-Loc =\textgreater BINOCULAR ORBITAL                      & 0,008   & 0,615      & 9,271  & 0,266  & 0,365      & 0,759 & Desc. General &  \\
+ 			JARRO TÉRMICO,Buenos Aires-Prov =\textgreater TERMO                                   & 0,009   & 0,628      & 6,668  & 0,239  & 0,359      & 0,811 & Desc. General &  \\
+ 			EL PALOMAR-Loc =\textgreater PESCA                                                    & 0,008   & 0,613      & 1,853  & 0,120  & 0,318      & 0,947 & Categoría           &  \\
+ 			TORTUGUITAS-Loc =\textgreater CAMPING                                                 & 0,005   & 0,618      & 1,113  & 0,078  & 0,314      & 0,978 & Categoría           &  \\
+ 			MONTE GRANDE-Loc =\textgreater CAMPING                                                & 0,005   & 0,607      & 1,093  & 0,077  & 0,308      & 0,978 & Categoría           & 
+ 		\end{tabular}
+ 	\end{table}
+ \end{landscape}
+ \restoregeometry
 
 \subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
 

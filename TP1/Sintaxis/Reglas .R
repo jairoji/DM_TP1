@@ -258,14 +258,29 @@ png("4_4_Reglas.demograficas_Cat.png", width = 800, height = 600)
 plot(Cat.rules.Demograficas[Reglas.Cat.Final], method="paracoord", control = list(main = "Reglas demográficas categoría"))
 dev.off()
 
+Reglas.Prod.Final.Demog = as(Prod.rules.Demograficas[Reglas.Prod.Final], "data.frame")
+Reglas.DescGen.Final.Demog = as(DescGen.rules.Demograficas[Reglas.DescGen.Final], "data.frame")
+Reglas.SubCat.Final.Demog = as(SubCat.rules.Demograficas[Reglas.SubCat.Final], "data.frame")
+Reglas.Cat.Final.Demog = as(Cat.rules.Demograficas[Reglas.Cat.Final], "data.frame")
+Reglas.Prod.Final.Demog = cbind(Reglas.Prod.Final.Demog, rep("Producto"))
+Reglas.DescGen.Final.Demog = cbind(Reglas.DescGen.Final.Demog, rep("Descripción General"))
+Reglas.SubCat.Final.Demog = cbind(Reglas.SubCat.Final.Demog, rep("Subcategoría"))
+Reglas.Cat.Final.Demog = cbind(Reglas.Cat.Final.Demog, rep("Categoría"))
+colnames(Reglas.Prod.Final.Demog)[ncol(Reglas.Prod.Final.Demog)] = "Grupo"
+colnames(Reglas.DescGen.Final.Demog)[ncol(Reglas.DescGen.Final.Demog)] = "Grupo"
+colnames(Reglas.SubCat.Final.Demog)[ncol(Reglas.SubCat.Final.Demog)] = "Grupo"
+colnames(Reglas.Cat.Final.Demog)[ncol(Reglas.Cat.Final.Demog)] = "Grupo"
 
+Reglas.Demo = rbind(Reglas.Prod.Final.Demog, Reglas.DescGen.Final.Demog, Reglas.SubCat.Final.Demog, 
+        Reglas.Cat.Final.Demog)
 
+Orden = order(Reglas.Demo[["Kulczinsky"]], decreasing = T)
+Reglas.Demo = Reglas.Demo[Orden, ]
+Reglas.Demo
 
+write.xlsx(Reglas.Demo, "4_Reglas.Definitivas.Demograficas.xlsx", row.names = F)
 
-
-
-inspect(Cat.rules.Demograficas[Reglas.Cat.Final]@rhs)
-
+View(Reglas.Demo[,c("rules", "Grupo")])
 View(as(Cat.rules.Demograficas[Reglas.Cat.Final], "data.frame"))
 
 
