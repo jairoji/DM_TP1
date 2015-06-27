@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.6.20)  26 JUN 2015 14:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.6.20)  27 JUN 2015 19:08
 entering extended mode
 **TP1.tex
 
@@ -345,7 +345,14 @@ Package ifvtex Info: VTeX not detected.
 
 ("C:\Program Files\MikTex\tex\latex\geometry\geometry.cfg"))
 ("C:\Users\Roberto\Documents\Data Mining Maestria\Proyectos\DM\DM_TP1\TP1\Resul
-tados\TP1.aux")
+tados\TP1.aux"
+
+LaTeX Warning: Label `tab:addlabel' multiply defined.
+
+
+LaTeX Warning: Label `tab:addlabel' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
@@ -472,11 +479,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 110--111
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
-[3] [4]
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
+
+ []
+
+[4]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -509,64 +531,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--138
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 151.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 153.
 
  ("C:\Program Files\MikTex\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 151.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 153.
 
-Overfull \hbox (100.69928pt too wide) in paragraph at lines 148--165
- [][] 
+Overfull \hbox (72.3382pt too wide) in paragraph at lines 150--177
+ [][][] 
  []
 
-[5
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 172--173
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
 [6
 
 
+
+
 ]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -601,43 +587,200 @@ Underfull \hbox (badness 10000) in paragraph at lines 186--187
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Overfull \hbox (99.07964pt too wide) in paragraph at lines 198--225
- [][][] 
+Overfull \hbox (100.69928pt too wide) in paragraph at lines 194--211
+ [][] 
  []
 
 [7
 
 
 ]
-("C:\Users\Roberto\Documents\Data Mining Maestria\Proyectos\DM\DM_TP1\TP1\Resul
-tados\TP1.bbl") [8
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
+
+ []
+
+[8
+
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 436.79155pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 696.72717pt, 2.84544pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=436.79155pt
+* \textheight=696.72717pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Overfull \hbox (87.1845pt too wide) in paragraph at lines 233--254
+ [][][] 
+ []
+
+[9
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+[10
+
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 436.79155pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 696.72717pt, 2.84544pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=436.79155pt
+* \textheight=696.72717pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Overfull \hbox (75.07964pt too wide) in paragraph at lines 286--313
+ [][][] 
+ []
+
+[11
+
 
 ]
 ("C:\Users\Roberto\Documents\Data Mining Maestria\Proyectos\DM\DM_TP1\TP1\Resul
-tados\TP1.aux") ) 
+tados\TP1.bbl") [12
+
+
+]
+("C:\Users\Roberto\Documents\Data Mining Maestria\Proyectos\DM\DM_TP1\TP1\Resul
+tados\TP1.aux")
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3788 strings out of 493921
- 49763 string characters out of 3148880
- 146031 words of memory out of 3000000
- 7058 multiletter control sequences out of 15000+200000
+ 3789 strings out of 493921
+ 49771 string characters out of 3148880
+ 146071 words of memory out of 3000000
+ 7059 multiletter control sequences out of 15000+200000
  8409 words of font info for 30 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  34i,8n,42p,544b,1970s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx10
-.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pro
-gram Files/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
-ikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MikTex/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MikTex/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/c
-mr12.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
-Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/
-MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MikTex/fonts
-/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MikTex/fonts/type1/public
-/amsfonts/cm/cmti10.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm
-/cmtt10.pfb>
-Output written on TP1.pdf (8 pages, 182816 bytes).
+<C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
+m Files/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MikT
+ex/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MikTex/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MikTex/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pr
+ogram Files/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/M
+ikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MikTex/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MikTex/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb><C:/Program Files/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on TP1.pdf (12 pages, 190100 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
