@@ -180,7 +180,7 @@
 	
 	En las reglas obtenidas por categoria, vemos que destacan las casas que compran muy frecuente, con las casas de pesca y con gastos altos para ambos años. De la misma manera artículos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels, así como también artículos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
 	
-	La tabla \ref{Tab_Reg_Anio} refleja lo explicado con respecto a las medidas que se utilizaron para el cálculo de reglas interesantes.
+	La tabla \ref{Tab_Reg_Anio} presenta el cálculo de las medidas en el 2015 de las reglas que resultaron interesantes en el 2014.
 	
 	\newgeometry{left=3cm,bottom=0.1cm}
 	\begin{landscape}
@@ -220,9 +220,7 @@
 		
 	\end{landscape}
 	\restoregeometry
-	
-	
-	
+		
 	\newgeometry{left=3cm,bottom=0.1cm}
 	\begin{landscape}
 		\begin{table}[h]
@@ -328,12 +326,32 @@
 		
 	\end{landscape}
 	\restoregeometry
+	\section{Bonus}
+	Basado en todas las reglas generadas entre la tabla 1, 2 y 4 pero de manera especial en las siguientes:\\
+	\begin{itemize}
+		\item PESCA REELS =\textgreater PESCA
+		\item BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC
+		\item BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Muy Frecuente =\textgreater BTP4S79-5SC
+		\item CA~NAS FLY,LINEAS FLY,CASA DE PESCA =\textgreater REELS FLY\\
+	\end{itemize}
+	 Proponemos una promoción que consista en que: 
+	\begin{itemize}
+		\item Las compras realizadas en artículos de pesca de preferencia cañas de pescar de diferente tipo se les ofrezca llevar gratis una botella de 500 o 750cc de color a elección (rojo, azul o plateado) para los clientes de Capital Federal.\\
+	\end{itemize}
+
+	\section{Conclusiones}
+	\begin{itemize}
+		\item En un primer análisis exploratorio de los datos encontramos cierto ruido (transacciones con cantidades negativos, productos con precio de referencia cero, etc.) que era necesario trabajarlo previo a poder aplicar un algoritmo para encontrar items frecuentes en las transacciones derivadas de las ventas, esto ratifica que es importante conocer los datos dado porque se corre el riesgo de encontrar reglas que no muestren la verdadera dinámica del negocio.\\
+		\item A pesar de que no se conoce todo el negocio en su complejidad, creemos que una gran parte de las reglas encontradas son triviales, sin embargo cabe mencionar que las medidas que utilizamos nos permitieron discrimar de mejor manera entre este tipo de reglas.\\
+		\item Consideramos que por todo el conocimiento generado entre el análisis exploratorio y las reglas obtenidas el perfil de la mayoria de los clientes apunta a distribuidores mayoristas, por lo que pensamos que esta sea la razon por la cual hayamos muchas reglas interesantes triviales.\\
+	\end{itemize}
 	
 	\section{Anexos}
 	
 	El presente trabajo fue realizado utilizando una herramienta de desarrollo colaborativo basado en el control de versiones como lo es github.\\
 	
-	\noindent En el siguiente \href{https://github.com/jairoji/DM_TP1/tree/master/TP1}{enlace} pueden encontrarse los recursos utilizados para la elaboración del informe.\\ 
+	\noindent En el siguiente \href{https://github.com/jairoji/DM_TP1/tree/master/TP1}{enlace} pueden encontrarse los recursos utilizados para la elaboración del informe.\\
+	 
 	
 	\noindent La estructura del repositorio está formada por cuatro carpetas:\\
 	
