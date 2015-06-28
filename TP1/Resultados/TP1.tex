@@ -136,9 +136,41 @@ La mayoría de las reglas interesantes que se presentan en este apartado son de 
 
 En este sentido, observamos que, consistentemente con lo detectado en el análisis exploratorio de los datos, todas las reglas involucran artículos de camping o pesca (al hablar de pesca nos referimos tanto a PESCA, como a PESCA REELS y PESCA CAÑAS), que son los dos rubros más representativos a nivel ventas, tanto si se lo mide a partir de la cantidad de transacciones como del monto.\\ 
 
-Como diferencia metodológica con respecto al resto de los puntos de sección tercera, se decidió, para algunos casos, prescindir de la medida de kulczinsky, de manera tal que sobrevivan al filtrado algunas reglas que consideramos aportan información relevante.\\
+Como diferencia metodológica con respecto al resto de los puntos de sección tercera, se decidió, para algunos casos, prescindir de la medida de kulczinsky, de manera tal que sobrevivan al filtrado algunas reglas que consideramos aportan información relevante. Estas reglas se presentan en la tabla \ref{Tab_Reg_Habituales}.
 
-A continuación, el cuadro con las reglas seleccionadas, y sus respectivos valores para las medidas utilizadas:\\
+\subsection{Reglas generadas a partir de las variables demográficas}
+En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la localidad y la provincia de Buenos Aires.\\
+
+En cuanto a los demás grupos (Descripción general, subcategoría y categoría), las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran, como por ejemplo el caso del jarro térmico en la provincia de Buenos Aires y el termo. Las reglas nombradas, son presentadas en la tabla  \ref{Tab_Reg_Demog}.
+
+\subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
+
+En este apartado, se buscó seleccionar reglas interesantes desde un punto de vista económico, ponderando las mismas por la cantidad de ventas que involucran y su monto.\\
+
+El primer factor se encuentra resumido en el soporte, mientras que para el segundo se calculó, para cada regla, el ingreso que le reportó al negocio en el período analizado la venta de los ítems que la componen.\\
+
+En cuanto a la selección de las reglas, se le dio prioridad, más allá del criterio explicitado en el párrafo anterior, a las generadas a nivel producto, entendiendo que, sin conocimiento de la empresa, son las que pueden resultar menos obvias o triviales.\\
+
+Por el mismo motivo (desconocimiento del negocio) presentamos un par de reglas que pueden parecer redundantes, por ejemplo: BASTÓN TREKKING y PEDERNAL PARA ENCENDER EL FUEGO a nivel producto ({ERNE} =\textgreater {FSTONE01}) y luego una regla que involucra estos productos a nivel de Descripción General. Las reglas son presentadas en la tabla \ref{Tab_Reg_Monto}.
+
+\subsection{Reglas generadas de un año a otro}
+Las siguientes reglas presentadas a continuación fueron tomadas con las siguientes condiciones:\\
+\begin{itemize}
+	\item El periodo de comparación fue todo el 2014 con respecto a los meses de marzo a Mayo del 2015\\
+	\item Las reglas generadas y catalogadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.\\
+\end{itemize}
+
+Es muy probable que tomando el mismo periodo de meses del 2015 para el 2014 resulten en mayor cantidad de reglas similares en caso de existir comportamientos de venta en común.\\
+
+En el resultado encontrado de las reglas generadas en ambos años, por ID de producto las lupas con diferentes aumentos comprados por casas de optica es una caracteristica que sobresale en ambos años, por otro lado la compra de botellas de color rojo y azul de 500cc y 750cc con botellas color plateado de 500cc, esto también se refleja como transacciones muy frecuentes, y finalmente otra regla bastante interesante es la compra de termos de tipo rojo y azul en medidas de 400cc por las casas de pesca.\\
+
+Con respecto a la descripción del producto, se puede apreciar que la reglas interesantes comprenden compra de binoculares del tipo travel II, lupas de mano y lupas profesionales por casas de optica; de la misma manera sombreros y capas por las casas de pesca. Una regla bastante interesante es la de la compra de bolsas para dormir tipo Gravity que generan un gasto medio y son compradas por casas de camping que siguen un patron de compra bastante frecuente en ambos años.\\
+
+Por el lado de las subcategorias se destacan un par de reglas interesantes referentes a las cañas de tipo fly y sus correspondientes accesorios del mismo tipo (Líneas y reels) comprados por casas de pesca, mientras que las bolsas de dormir rectangulares siempre tienen un gasto alto y son compras muy frecuentes. Similarmente la regla de compra de binoculares, linternas por casas de opticas indica la compra de lupas en general.\\
+
+En las reglas obtenidas por categoria, vemos que destacan las compras muy frecuentes (muchas transacciones) x las casas de pesca y con gastos altos para ambos años. De la misma manera articulos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels y de la misma manera articulos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
+
+La tabla \ref{Tab_Reg_Anio} refleja lo explicado con respecto a las medidas que se utilizaron para el cálculo de reglas interesantes.
 
  \newgeometry{left=3cm,bottom=0.1cm}
  \begin{landscape}
@@ -173,16 +205,13 @@ A continuación, el cuadro con las reglas seleccionadas, y sus respectivos valor
  			{REELS FLY} =\textgreater {CAÑAS FLY} & 0.019 & 0.634 & 18.051 & 0.589 & 0.591 & 0.103 & SubCategoría \\
  			{PASAHILOS} =\textgreater {PUNTERA} & 0.015 & 0.612 & 18.886 & 0.528 & 0.534 & 0.198 & Desc. General \\		 			
  		\end{tabular}%
- 		\label{tab:addlabel}%
+ 		\label{Tab_Reg_Habituales}%
  	\end{table}%
  	
 \end{landscape}
  \restoregeometry
 
-\subsection{Reglas generadas a partir de las variables demográficas}
-En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la localidad y la provincia de Buenos Aires.\\
 
- En cuanto a los demás grupos (Descripción general, subcategoría y categoría), las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran, como por ejemplo el caso del jarro térmico en la provincia de Buenos Aires y el termo. Tabla  \ref{Tab_Reg_Demog}
  
  \newgeometry{left=3cm,bottom=0.1cm}
  \begin{landscape}
@@ -212,17 +241,8 @@ En general las relaciones existentes entre las variables demográficas y los pro
  \end{landscape}
  \restoregeometry
 
-\subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
 
-En este apartado, se buscó seleccionar reglas interesantes desde un punto de vista económico, ponderando las mismas por la cantidad de ventas que involucran y su monto.\\
 
-El primer factor se encuentra resumido en el soporte, mientras que para el segundo se calculó, para cada regla, el ingreso que le reportó al negocio en el período analizado la venta de los ítems que la componen.\\
-
-En cuanto a la selección de las reglas, se le dio prioridad, más allá del criterio explicitado en el párrafo anterior, a las generadas a nivel producto, entendiendo que, sin conocimiento de la empresa, son las que pueden resultar menos obvias o triviales.\\
-
-Por el mismo motivo (desconocimiento del negocio) presentamos un par de reglas que pueden parecer redundantes, por ejemplo: BASTÓN TREKKING y PEDERNAL PARA ENCENDER EL FUEGO a nivel producto ({ERNE} =\textgreater {FSTONE01}) y luego una regla que involucra estos productos a nivel de Descripción General.\\
-
-A continuación, la reglas:\\ 
 \newgeometry{left=3cm,bottom=0.1cm}
 \begin{landscape}
 	\begin{table}[htbp]
@@ -250,29 +270,12 @@ A continuación, la reglas:\\
 			{MIRAZUR} =\textgreater {NOMA10} & 0.006 & 0.633 & 59.524 & 0.599 & 0.600 & 0.079 &  \$       268,426  & Producto \\
 			{MG1968,TN4X30-1} =\textgreater {TN4X30-3} & 0.007 & 0.811 & 33.391 & 0.478 & 0.546 & 0.613 &  \$       261,638  & Producto \\
 		\end{tabular}%
-		\label{tab:addlabel}%
+		\label{Tab_Reg_Monto}%
 	\end{table}%	
 \end{landscape}
 \restoregeometry
 
-\subsection{Reglas generadas de un año a otro}
-Las siguientes reglas presentadas a continuación fueron tomadas con las siguientes condiciones:\\
-\begin{itemize}
-	\item El periodo de comparación fue todo el 2014 con respecto a los meses de marzo a Mayo del 2015\\
-	\item Las reglas generadas y catalogadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.\\
-\end{itemize}
 
-Es muy probable que tomando el mismo periodo de meses del 2015 para el 2014 resulten en mayor cantidad de reglas similares en caso de existir comportamientos de venta en común.\\
-
-En el resultado encontrado de las reglas generadas en ambos años, por ID de producto las lupas con diferentes aumentos comprados por casas de optica es una caracteristica que sobresale en ambos años, por otro lado la compra de botellas de color rojo y azul de 500cc y 750cc con botellas color plateado de 500cc, esto también se refleja como transacciones muy frecuentes, y finalmente otra regla bastante interesante es la compra de termos de tipo rojo y azul en medidas de 400cc por las casas de pesca.\\
-
-Con respecto a la descripción del producto, se puede apreciar que la reglas interesantes comprenden compra de binoculares del tipo travel II, lupas de mano y lupas profesionales por casas de optica; de la misma manera sombreros y capas por las casas de pesca. Una regla bastante interesante es la de la compra de bolsas para dormir tipo Gravity que generan un gasto medio y son compradas por casas de camping que siguen un patron de compra bastante frecuente en ambos años.\\
-
-Por el lado de las subcategorias se destacan un par de reglas interesantes referentes a las cañas de tipo fly y sus correspondientes accesorios del mismo tipo (Líneas y reels) comprados por casas de pesca, mientras que las bolsas de dormir rectangulares siempre tienen un gasto alto y son compras muy frecuentes. Similarmente la regla de compra de binoculares, linternas por casas de opticas indica la compra de lupas en general.\\
-
-En las reglas obtenidas por categoria, vemos que destacan las compras muy frecuentes (muchas transacciones) x las casas de pesca y con gastos altos para ambos años. De la misma manera articulos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels y de la misma manera articulos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
-
-La tabla mostrada a continuación refleja lo explicado con respecto a las medidas que se utilizaron para el cálculo de reglas interesantes.
 
 \newgeometry{left=3cm,bottom=0.1cm}
 \begin{landscape}
@@ -309,7 +312,7 @@ La tabla mostrada a continuación refleja lo explicado con respecto a las medida
 		{CAMPING,INDUMENTARIA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA} & 0.027 & 0.979 & 2.359 & 0.253 & 0.522 & 0.932 & Categoria \\
 		{OPTICA,Gasto Alto,CASA POLIRUBRO} =\textgreater {Muy Frecuente} & 0.009 & 1     & 1.605 & 0.122 & 0.507 & 0.985 & Categoria \\
 	\end{tabular}%
-	\label{tab:addlabel}%
+	\label{Tab_Reg_Anio}%
 \end{table}%
 
 		
