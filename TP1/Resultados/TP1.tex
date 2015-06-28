@@ -34,7 +34,7 @@
 	
 	\section{Resultados técnicos}
 	\subsection{Preprocesamiento}
-	En este apartado, describimos cómo preprocesamos las tablas previo a introducirlas en el algoritmo de generación de reglas de asociación:\\
+	En este apartado, describimos cómo preprocesamos las tablas previo a introducirlas en el algoritmo de generación de reglas de asociación:
 	\begin{itemize}
 		\item Comenzamos aplanando la base, usando MS Access
 		\item Removimos de la base aplanada todos aquellos renglones que no tenían transacciones asociadas (entre ellos, 1 Categoría y 16 SubCategorías)
@@ -56,12 +56,12 @@
 			
 			\end{lstlisting}
 			
-			\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:\\
+			\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:
 			\begin{center}
 				\textit{Nombre del Atributo: Valor del Atributo}		
 			\end{center}
 			
-			\item Realización de un script (ver Anexo) para generar un .csv con los nuevos registros para la tabla TP\_MarcaAtributos en R.\\
+			\item Realización de un script (ver Anexo) para generar un .csv con los nuevos registros para la tabla TP\_MarcaAtributos en R.
 			
 			\item Creación de la tabla en Access con las siguientes columnas:
 			\begin{itemize}
@@ -164,10 +164,10 @@
 	Por el mismo motivo (desconocimiento del negocio) presentamos un par de reglas que pueden parecer redundantes, por ejemplo: BASTÓN TREKKING y PEDERNAL PARA ENCENDER EL FUEGO a nivel producto ({ERNE} =\textgreater {FSTONE01}) y luego una regla que involucra estos productos a nivel de Descripción General. Las reglas son presentadas en la tabla \ref{Tab_Reg_Monto}.
 	
 	\subsection{Reglas generadas de un año a otro}
-	Las reglas presentadas a continuación fueron tomadas con las siguientes condiciones:\\
+	Las reglas presentadas a continuación fueron tomadas con las siguientes condiciones:
 	\begin{itemize}
-		\item El periodo de comparación fue todo el 2014 con respecto a los meses de enero a mayo del 2015\\
-		\item Las reglas generadas e identificadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.\\
+		\item El periodo de comparación fue todo el 2014 con respecto a los meses de enero a mayo del 2015
+		\item Las reglas generadas e identificadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.
 	\end{itemize}
 	
 	Es muy probable que, de tomar el mismo periodo de meses del 2015 para el 2014, resulte en mayor cantidad de reglas similares en caso de existir comportamientos de venta en común.\\
