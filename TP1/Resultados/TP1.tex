@@ -5,6 +5,14 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[usenames]{color}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=cyan,
+	urlcolor=cyan,
+}	
 
 %opening
 \title{Trabajo Práctico 1}
@@ -100,7 +108,7 @@ En dicho software, se implementaron los códigos necesarios para la generación 
 \subsection{Justificación de la elección de los parámetros del algoritmo}
 La determinación del minsup se realizó a partir del análisis exploratorio de los datos.La confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba.\\
 
-Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear otras medidas, las cuales se presentan en el apartado \ref{Medidas}
+Adicionalmente, al no contar con conocimiento experto sobre la base con la que trabajamos, decidimos emplear otras medidas, las cuales se presentan en el apartado \ref{Medidas} 
 
 \subsection{Criterio para la selección de los resultados no técnicos}
 
@@ -319,8 +327,21 @@ La tabla \ref{Tab_Reg_Anio} refleja lo explicado con respecto a las medidas que 
 \end{landscape}
  \restoregeometry
 
+\section{Anexos}
 
-\section{Bonus}
+El presente trabajo fue realizado utilizando una herramienta de desarrollo colaborativo basado control de versiones como lo es github.\\
+
+\noindent En el siguiente \href{https://github.com/jairoji/DM_TP1/tree/master/TP1}{enlace} puede encontrarse los recursos utilizados para la elaboración del informe.\\ 
+
+\noindent La estructura del repositorio esta formada por cuatro carpetas:\\
+
+\textbf{Analisis}: Contiene notas hechas por el grupo para la elaboración del informe, primera version de la base de datos consolidada y una base con la separación de la descripción adicional del producto en una nueva tabla como parte del preprocesamiento.\\
+
+\textbf{Insumos}: Contiene todos los recursos necesarios (archivos de excel de las diferentes tablas) utilizados para formar los multiples consolidados que se usaron para generar las reglas.\\
+
+\textbf{Resultados}: Aqui se puede encontrar la base final consolidada de la cual se tomó como partida para usarse en el algoritmo que genero las reglas asi como también todos los  archivos en formato de excel con las reglas para cada uno de los items del informe.\\
+
+\textbf{Sintaxis}: Contiene los scripts en R utilizados para generar las reglas y separación de la descripción adicional con la generación del csv para importarse como nueva tabla al modelo original en Access.\\
 
 \bibliographystyle{apalike}
 \bibliography{Bibliografia}
