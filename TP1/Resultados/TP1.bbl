@@ -1,5 +1,12 @@
 \begin{thebibliography}{}
 
+\bibitem[Agrawal and Srikant, 1994]{Agrawal:1994:FAM:645920.672836}
+Agrawal, R. and Srikant, R. (1994).
+\newblock Fast algorithms for mining association rules in large databases.
+\newblock In {\em Proceedings of the 20th International Conference on Very
+  Large Data Bases}, VLDB '94, pages 487--499, San Francisco, CA, USA. Morgan
+  Kaufmann Publishers Inc.
+
 \bibitem[Hall et~al., 2009]{Hall:2009:WDM:1656274.1656278}
 Hall, M., Frank, E., Holmes, G., Pfahringer, B., Reutemann, P., and Witten,
   I.~H. (2009).

@@ -27,7 +27,7 @@
 	
 	\section{Introducción}
 	
-	En el presente informe, se presenta el resultado de trabajar con el algoritmo apriori \cite{Tan:2005:IDM:1095618} para generar reglas de asociación interesantes sobre una base de datos de ventas de una empresa.
+	En el presente informe, se presenta el resultado de trabajar con el algoritmo apriori \cite{Agrawal:1994:FAM:645920.672836} para generar reglas de asociación interesantes sobre una base de datos de ventas de una empresa.
 	
 	Se estructura en tres secciones: en la primera, se representan los resultados técnicos, que incluyen el detalle del preprocesamiento de los datos, software y algoritmo utilizado, justificación de la elección de los parámetros del mismo y explicación del criterio utilizado para la selección de los resultados no técnicos. En la segunda, aparecen los resultados no técnicos, que consisten en la selección de reglas interesantes, siguiendo distintos enfoques. Por último, se esboza una breve conclusión del trabajo realizado.
 	
@@ -42,19 +42,7 @@
 		\item Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas
 		\item Separamos el campo DescAdic, utilizando el siguiente procedimiento:
 		\begin{enumerate}
-			\item Realización de un query para sacar la categoría y subcategoría por producto con las descripciones generales y adicionales.  Estas últimas son las que vamos a separar en una tabla nueva que contendrá un registro por cada atributo con su valor asociado con la subcategoría.
-			
-			\begin{lstlisting}[
-			language=SQL,
-			showspaces=false,
-			basicstyle=\ttfamily,
-			commentstyle=\color{gray},
-			breaklines=true
-			]
-			SELECT TP_Categoria.Cat_ID, TP_Categoria.Cat_Desc, TP_Sub_Categoria.SubCat_ID, TP_Sub_Categoria.SubCat_Desc, TP_Productos.DescGen, TP_Productos.DescAdic
-			FROM TP_Sub_Categoria INNER JOIN (TP_Categoria INNER JOIN TP_Productos ON TP_Categoria.Cat_ID = TP_Productos.Cat_ID) ON TP_Sub_Categoria.SubCat_ID = TP_Productos.SubCat_ID;
-			
-			\end{lstlisting}
+			\item Realización de un query para sacar la categoría y subcategoría por producto con las descripciones generales y adicionales.  Estas últimas son las que vamos a separar en una tabla nueva que contendrá un registro por cada atributo con su valor asociado con la subcategoría. Ver Anexo 1 \ref{subsec:Anexo1}
 			
 			\item Realización de un script para separar la columna DescAdic, este script contiene la separación de la subcategoría primeramente para después poder separar los atributos que están identificados con la notación:
 			\begin{center}
@@ -108,16 +96,16 @@
 	En dicho software, se implementaron los códigos necesarios para la generación de los conjuntos de datos en el formato requerido por el algoritmo, el cálculo de las medidas de interés adicionales y la poda de las reglas.
 	
 	\subsection{Justificación de la elección de los parámetros del algoritmo}
-	La determinación del minsup se realizó a partir del análisis exploratorio de los datos. La confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba. Trabajamos con valores de 0.005 para el misup, y 60% para la confianza.\\
+	La determinación del minsup se realizó a partir del análisis exploratorio de los datos. La confianza, a partir de iteraciones sucesivas del algoritmo y observar cuántas reglas interesantes generaba. Trabajamos con valores de 0.005 para el min support, y 0.6 para la confianza.% para la confianza.\\
 	
 	Adicionalmente, al no contar con conocimiento experto sobre la base de datos, se tomo la decisión de emplear otras medidas, las cuales se presentan en el apartado \ref{Medidas} 
 	
 	\subsection{Criterio para la selección de los resultados no técnicos}
 	
-	Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas \cite{Tan:2005:IDM:1095618}.
+	Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas encontradas en el libro de \cite{Tan:2005:IDM:1095618}.
 	
 	\subsubsection{Medidas adicionales} \label{Medidas}
-	Las medidas que fueron elegidas tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
+	Las medidas que fueron elegidas tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos, adicionalmente, tienen son más robustas que otras medidas con la misma propiedad como por ejemplo la confianza máxima o la confianza total. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
 	
 	Medida coseno:
 	
@@ -365,6 +353,21 @@
 	
 	\bibliographystyle{apalike}
 	\bibliography{Bibliografia}
+	
+	\section*{Anexos}
+	\subsection*{Anexo 1}
+	\label{subsec:Anexo1}
+		\begin{lstlisting}[
+		language=SQL,
+		showspaces=false,
+		basicstyle=\ttfamily,
+		commentstyle=\color{gray},
+		breaklines=true
+		]
+		SELECT TP_Categoria.Cat_ID, TP_Categoria.Cat_Desc, TP_Sub_Categoria.SubCat_ID, TP_Sub_Categoria.SubCat_Desc, TP_Productos.DescGen, TP_Productos.DescAdic
+		FROM TP_Sub_Categoria INNER JOIN (TP_Categoria INNER JOIN TP_Productos ON TP_Categoria.Cat_ID = TP_Productos.Cat_ID) ON TP_Sub_Categoria.SubCat_ID = TP_Productos.SubCat_ID;
+		
+		\end{lstlisting}
 	
 	
 \end{document}
