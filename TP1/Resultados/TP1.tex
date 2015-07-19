@@ -36,7 +36,41 @@
 	\subsection{Preprocesamiento}
 	En este apartado, describimos cómo preprocesamos las tablas previo a introducirlas en el algoritmo de generación de reglas de asociación:
 	\begin{itemize}
-		\item Comenzamos aplanando la base, usando MS Access
+		\item Comenzamos aplanando la base usando MS Access, con lo que se obtuvieron las variables presentadas en la tabla \ref{TablaVariables}.
+		
+		\begin{table}[]
+			\centering
+			\caption{Tabla de variables obtenidas}
+			\label{TablaVariables}
+			\begin{tabular}{lll}
+				\multicolumn{1}{c}{{\bf Denominación}} & \multicolumn{1}{c}{{\bf Descripción}}                           & \multicolumn{1}{c}{{\bf Tabla de Origen}} \\
+				\hline
+				Cat\_Desc                              & Descrición de la Categoría a la que pertenece el Producto.      & TP\_Categoría                             \\
+				cli\_CodPos                            & Código postal del Cliente.                                      & TP\_Clientes                              \\
+				cli\_Loc                               & Localidad del Cliente.                                          & TP\_Clientes                              \\
+				CLI\_NOM                               & Denominación del Cliente.                                       & TP\_Clientes                              \\
+				CLI\_Prv                               & Provincia del Cliente.                                          & TP\_Clientes                              \\
+				Precio                                 & Precio sugerido del Producto.                                   & TP\_Precio\_Sugerido                      \\
+				CantEnvase                             & Medida de Cantidad.                                             & TP\_Productos                             \\
+				Cat\_ID                                & ID de la Caegoría a la que pertenece el Producto.               & TP\_Productos                             \\
+				DescAdic                               & Descripción Adicional del Producto.                             & TP\_Productos                             \\
+				DescGen                                & Descripción Genérica del Producto.                              & TP\_Productos                             \\
+				Marca                                  & Marca del Producto.                                             & TP\_Productos                             \\
+				Prod\_ID                               & ID del Producto.                                                & TP\_Productos                             \\
+				Proveedor                              & Proveedor.                                                      & TP\_Productos                             \\
+				SubCat\_ID                             & ID de la Sub Categoría a la que pertenece el Producto.          & TP\_Productos                             \\
+				SubCat\_Desc                           & Descripción de la Sub Categoría a la que pertenece el Producto. & TP\_Sub\_Categoría                        \\
+				CLI\_ID                                & ID del Ciente.                                                  & TP\_Ventas                                \\
+				SIT\_IVA\_ID                           & Situación ante el IVA del Cliente.                              & TP\_Ventas                                \\
+				Venta\_Fecha                           & Fecha de la Venta.                                              & TP\_Ventas                                \\
+				Cantidad\_UM1                          & Medida de Cantidad.                                             & TP\_Ventas\_Prod                          \\
+				Cantidad\_UM2                          & Medida de Cantidad.                                             & TP\_Ventas\_Prod                          \\
+				Fecha                                  & Fecha de la Venta.                                              & TP\_Ventas\_Prod                          \\
+				Renglon                                & Número del renglón de la Venta.                                 & TP\_Ventas\_Prod                          \\
+				Venta\_ID                              & ID de la Venta.                                                 & TP\_Ventas\_Prod                         
+			\end{tabular}
+		\end{table}
+		
 		\item Removimos de la base aplanada todos aquellos renglones que no tenían transacciones asociadas (entre ellos, 1 Categoría y 16 SubCategorías)
 		\item Eliminamos 363 transacciones con cantidades negativas, ya que representan devoluciones.
 		\item Detectamos la existencia productos con precio 0. Se decidió no hacer nada al respecto, aunque distorsionan las mediciones del gasto de los clientes y la ponderación de reglas por su impacto en las ventas
@@ -141,7 +175,7 @@
 	\subsection{Reglas generadas a partir de las variables demográficas}
 	En general las relaciones existentes entre las variables demográficas y los productos, descripción general de los productos, subcategorías y categorías es muy poca. A nivel de producto, las reglas encontradas suelen no ser muy interesantes pues éstas solamente relacionan botellas con botellas o termos con termos, sin embargo, éstas tienen dos particularidades: todas tienen una correlación positiva entre el antecedente y el consecuente y todas están relacionadas con la localidad y la provincia de Buenos Aires.\\
 	
-	En cuanto a los demás grupos (descripción general, subcategoría y categoría), las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran, como por ejemplo, el caso del jarro térmico en la provincia de Buenos Aires y el termo. Las reglas nombradas, son presentadas en la tabla  \ref{Tab_Reg_Demog}.
+	En cuanto a los demás grupos (descripción general, subcategoría y categoría), las correlaciones encontradas son negativas mostrando una "repelencia" entre los ítems y las ciudades en las cuales se encuentran. Las reglas nombradas, son presentadas en la tabla  \ref{Tab_Reg_Demog}.
 	
 	\subsection{Reglas a nivel de monto y cantidad de ventas de la empresa}
 	
@@ -213,32 +247,30 @@
 		
 	\newgeometry{left=3cm,bottom=0.1cm}
 	\begin{landscape}
-		\begin{table}[h]
+		
+		\begin{table}[]
 			\centering
 			\caption{Reglas con información demográfica}
 			\label{Tab_Reg_Demog}
-			\renewcommand{\arraystretch}{1.2}
-			\begin{tabular}{lllllllll}
-				\textbf{Reglas}                                     & \textbf{Soporte} & \textbf{Confianza}& \textbf{Lift} & \textbf{Coseno}  & \textbf{Kulczinsky}  & \textbf{IR} & \textbf{Grupo}                &  \\
-				\hline 			
-				BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC  & 0,006   & 1,000      & 48,438 & 0,526  & 0,638      & 0,723 & Producto            &  \\
-				BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,C.A.B.A.-Loc =\textgreater BTP4S79-5SC          & 0,005   & 1,000      & 48,438 & 0,504  & 0,627      & 0,746 & Producto            &  \\
-				BTP4S79-5BLC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC & 0,006   & 0,972      & 47,093 & 0,512  & 0,621      & 0,718 & Producto            &  \\
-				LCM1406NB,Buenos Aires-Prov =\textgreater LCM1406NR                                   & 0,006   & 0,947      & 48,501 & 0,527  & 0,620      & 0,680 & Producto            &  \\
-				REELS PEJERREY,REELS VARIADA,C.A.B.A.-Loc =\textgreater CAÑAS TELESC. PEJERREY        & 0,010   & 0,693      & 6,684  & 0,254  & 0,393      & 0,831 & Subcategoría        &  \\
-				LINEAS FLY,Capital Federal-Prov =\textgreater CAÑAS FLY                               & 0,006   & 0,609      & 17,363 & 0,328  & 0,393      & 0,638 & Subcategoría        &  \\
-				LINEAS FLY,C.A.B.A.-Loc =\textgreater CAÑAS FLY                                       & 0,006   & 0,625      & 17,808 & 0,315  & 0,392      & 0,682 & Subcategoría        &  \\
-				REEL CHARGER,Buenos Aires-Prov =\textgreater REEL BELLUS                              & 0,007   & 0,652      & 11,313 & 0,284  & 0,388      & 0,760 & Desc. General &  \\
-				BINOCULAR TRAVEL II,C.A.B.A.-Loc =\textgreater BINOCULAR ORBITAL                      & 0,008   & 0,615      & 9,271  & 0,266  & 0,365      & 0,759 & Desc. General &  \\
-				JARRO TÉRMICO,Buenos Aires-Prov =\textgreater TERMO                                   & 0,009   & 0,628      & 6,668  & 0,239  & 0,359      & 0,811 & Desc. General &  \\
-				EL PALOMAR-Loc =\textgreater PESCA                                                    & 0,008   & 0,613      & 1,853  & 0,120  & 0,318      & 0,947 & Categoría           &  \\
-				TORTUGUITAS-Loc =\textgreater CAMPING                                                 & 0,005   & 0,618      & 1,113  & 0,078  & 0,314      & 0,978 & Categoría           &  \\
-				MONTE GRANDE-Loc =\textgreater CAMPING                                                & 0,005   & 0,607      & 1,093  & 0,077  & 0,308      & 0,978 & Categoría           & 
+			\begin{tabular}{llllllll}
+				{\bf Reglas}                                                                         & {\bf Soporte} & {\bf Confianza} & {\bf Lift} & {\bf Coseno} & {\bf Kulczinsky} & {\bf IR} & {\bf Grupo}  \\
+				\hline
+				BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC & 0,006         & 1,000           & 49,024     & 0,525        & 0,638            & 0,724    & Producto     \\
+				LCM1406NB,Buenos Aires-Prov =\textgreater LCM1406NR                                  & 0,005         & 0,944           & 49,001     & 0,517        & 0,614            & 0,689    & Producto     \\
+				BTP4S79-75BLC,Capital Federal-Prov =\textgreater BTP4S79-75RC                        & 0,010         & 0,878           & 29,089     & 0,551        & 0,612            & 0,579    & Producto     \\
+				LINEAS FLY,Capital Federal-Prov =\textgreater CAnAS FLY                              & 0,006         & 0,609           & 17,324     & 0,329        & 0,394            & 0,635    & Subcategoría \\
+				GENERAL ROCA-Loc =\textgreater PESCA                                                 & 0,008         & 0,627           & 1,892      & 0,126        & 0,326            & 0,946    & Categoría    \\
+				Tucuman-Prov =\textgreater PESCA                                                     & 0,009         & 0,621           & 1,875      & 0,133        & 0,325            & 0,938    & Categoría    \\
+				RESISTENCIA-Loc =\textgreater CAMPING                                                & 0,005         & 0,630           & 1,135      & 0,079        & 0,320            & 0,979    & Categoría    \\
+				EL PALOMAR-Loc =\textgreater PESCA                                                   & 0,008         & 0,613           & 1,849      & 0,121        & 0,318            & 0,947    & Categoría    \\
+				TORTUGUITAS-Loc =\textgreater CAMPING                                                & 0,005         & 0,618           & 1,114      & 0,078        & 0,314            & 0,978    & Categoría    \\
+				MONTE GRANDE-Loc =\textgreater CAMPING                                               & 0,005         & 0,607           & 1,094      & 0,077        & 0,308            & 0,978    & Categoría   
 			\end{tabular}
 		\end{table}
+		
+
 	\end{landscape}
 	\restoregeometry
-	
 	
 	
 	\newgeometry{left=3cm,bottom=0.1cm}
