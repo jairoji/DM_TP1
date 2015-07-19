@@ -105,7 +105,7 @@
 	Para el análisis de las reglas interesantes, se decidió utilizar medidas adicionales a las medidas clásicas encontradas en el libro de \cite{Tan:2005:IDM:1095618}.
 	
 	\subsubsection{Medidas adicionales} \label{Medidas}
-	Las medidas que fueron elegidas tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos, adicionalmente, tienen son más robustas que otras medidas con la misma propiedad como por ejemplo la confianza máxima o la confianza total. Las medidas utilizadas son la medida coseno, la medida de Kulczynsky y la razón de desbalanceo \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
+	Las medidas que fueron elegidas tienen la propiedad de ser \textit{null-invariantes}, es decir, no se ven afectadas por el efecto de la falta de la categoría en el conjunto de datos, adicionalmente, son más robustas que otras medidas con la misma propiedad como por ejemplo la confianza máxima o la confianza total. Las medidas utilizadas principalmente son la medida coseno y la medida de Kulczynsky, las cuales miden la correlación entre el antecedente y el consecuente de la regla, siendo 0 correlación negativa y 1 correlación positiva. Cuando el desbalanceo es muy alto entre los datos, la medida de Kulczynsky tiene valores cercanos a 0.5, mientras que la medida de coseno pierde robustez, en cuyo caso, se usa como soporte la medida de Razón de desbalanceo, la cual permite identificar las reglas interesantes como aquellas que tienen este índice cercano a 1 \cite{Hall:2009:WDM:1656274.1656278}. Estas medidas se presentan a continuación\\
 	
 	Medida coseno:
 	
@@ -126,6 +126,8 @@
 	\end{center}
 	
 	\section{Resultados no técnicos esperados}
+	
+	Para la selección de las reglas en el presente capítulo, se tuvieron en cuenta las medidas descritas en la sección \ref*{Medidas}. Se tomaron las reglas que se consideraron interesantes con respecto a dichas medidas.
 	
 	
 	\subsection{Características más habituales de las ventas de la empresa}
