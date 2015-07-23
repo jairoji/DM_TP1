@@ -46,7 +46,7 @@ library(arulesViz)
 #datos = read.xlsx("TP1_DM - Base Consolidada.xlsx", sheetIndex = 1)
 datos = read.csv("TP1_DM - Base Consolidada_SINNEGATIVOS.csv", sep = ",", encoding = 'UTF-8')
 datos[["Fecha"]] = as.Date(datos[["Fecha"]], "%d/%m/%Y")
-#datos = na.omit(datos)
+datos = na.omit(datos)
 
 #datos = subset(datos, Fecha > "2015-01-01")
 #datos = subset(datos, Fecha < "2015-01-01")
@@ -64,7 +64,7 @@ for(i in 1:ncol(Producto))
 rm(datos)
 Producto = unique(Producto)
 
-##Tablas
+##Tablas            
 Producto.table = as(as.matrix(as.data.frame.matrix(table(Producto[,c("Venta_ID", "Prod_ID")]))), "transactions")
 SubCat.table = as(as.matrix(as.data.frame.matrix(table(Producto[,c("Venta_ID", "SubCat_Desc")]))), "transactions")
 Cat.table = as(as.matrix(as.data.frame.matrix(table(Producto[,c("Venta_ID", "Cat_Desc")]))), "transactions")
@@ -166,6 +166,7 @@ SubCat.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID"
 SubCat.table = as(SubCat.table, "transactions")
 Cat.table = as.matrix(cbind(as.data.frame.matrix(table(Producto[,c("Venta_ID", "Cat_Desc")])), Info.Demograficas))
 Cat.table = as(Cat.table, "transactions")
+
 
 ###Reglas para todos los grupos
 
@@ -273,6 +274,20 @@ colnames(Reglas.Cat.Final.Demog)[ncol(Reglas.Cat.Final.Demog)] = "Grupo"
 
 Reglas.Demo = rbind(Reglas.Prod.Final.Demog, Reglas.DescGen.Final.Demog, Reglas.SubCat.Final.Demog, 
         Reglas.Cat.Final.Demog)
+
+Prod.rules.Demograficas.Final = cbind(Prod.rules.Demograficas.Final, rep("Producto"))
+DescGen.rules.Demograficas.Final = cbind(DescGen.rules.Demograficas.Final, rep("Descripción General"))
+SubCat.rules.Demograficas.Final = cbind(SubCat.rules.Demograficas.Final, rep("Subcategoría"))
+Cat.rules.Demograficas.Final = cbind(Cat.rules.Demograficas.Final, rep("Categoría"))
+
+colnames(Prod.rules.Demograficas.Final)[ncol(Prod.rules.Demograficas.Final)] = "Grupo"
+colnames(DescGen.rules.Demograficas.Final)[ncol(DescGen.rules.Demograficas.Final)] = "Grupo"
+colnames(SubCat.rules.Demograficas.Final)[ncol(SubCat.rules.Demograficas.Final)] = "Grupo"
+colnames(Cat.rules.Demograficas.Final)[ncol(Cat.rules.Demograficas.Final)] = "Grupo"
+
+
+Reglas.Demo = rbind(Prod.rules.Demograficas.Final, DescGen.rules.Demograficas.Final, 
+                    SubCat.rules.Demograficas.Final, Cat.rules.Demograficas.Final)
 
 Orden = order(Reglas.Demo[["Kulczinsky"]], decreasing = T)
 Reglas.Demo = Reglas.Demo[Orden, ]
