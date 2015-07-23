@@ -49,7 +49,7 @@ datos[["Fecha"]] = as.Date(datos[["Fecha"]], "%d/%m/%Y")
 datos = na.omit(datos)
 
 #datos = subset(datos, Fecha > "2015-01-01")
-#datos = subset(datos, Fecha < "2015-01-01")
+datos = subset(datos, Fecha < "2014-05-08" & Fecha >= "2014-03-01")
 Info.clientes = unique(datos[,c("Venta_ID", "CLI_Gasto", "CLI_Compras", "CLI_CAT_DESC")])
 Info.clientes.bin = as.data.frame(binarize(Info.clientes[,c("CLI_Gasto", "CLI_Compras", "CLI_CAT_DESC")]))
 
@@ -146,6 +146,12 @@ write.xlsx(Prod.rules.cliente, "3_1_Reglas_cliente_2014.xlsx", sheetName = "Prod
 write.xlsx(DescGen.rules.cliente, "3_1_Reglas_cliente_2014.xlsx", sheetName = "Descripción General", row.names = F, append = T)
 write.xlsx(SubCat.rules.cliente, "3_1_Reglas_cliente_2014.xlsx", sheetName = "Subcategoría", row.names = F, append = T)
 write.xlsx(Cat.rules.cliente, "3_1_Reglas_cliente_2014.xlsx", sheetName = "Categoría", row.names = F, append = T)
+
+write.xlsx(Prod.rules.cliente, "3_1_Reglas_cliente_2014_mar-may.xlsx", sheetName = "Producto", row.names = F)
+write.xlsx(DescGen.rules.cliente, "3_1_Reglas_cliente_2014_mar-may.xlsx", sheetName = "Descripción General", row.names = F, append = T)
+write.xlsx(SubCat.rules.cliente, "3_1_Reglas_cliente_2014_mar-may.xlsx", sheetName = "Subcategoría", row.names = F, append = T)
+write.xlsx(Cat.rules.cliente, "3_1_Reglas_cliente_2014_mar-may.xlsx", sheetName = "Categoría", row.names = F, append = T)
+
 
 ###2015
 write.xlsx(Prod.rules.cliente, "3_2_Reglas_cliente_2015.xlsx", sheetName = "Producto", row.names = F)
