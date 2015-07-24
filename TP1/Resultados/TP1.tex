@@ -190,21 +190,29 @@
 	\subsection{Reglas generadas de un año a otro}
 	Las reglas presentadas a continuación fueron tomadas con las siguientes condiciones:
 	\begin{itemize}
-		\item El periodo de comparación fue del 2014 con respecto a los meses de enero a mayo del 2015
-		\item Las reglas generadas e identificadas como interesantes reflejan un periodo de comparación bastante diferente entre un año y otro por lo que muchas encontradas en el año 2015 no se cumplían en 2014 y viceversa.
+		\item El periodo de comparación del 2014 elegido (de acuerdo a la información disponible para el 2015) va desde el mes de Marzo hasta Mayo.
+		\item Las reglas generadas e identificadas como interesantes reflejan un periodo de comparación similar entre un año y otro, las del 2014 elegidas luego fueron calculadas a mano en el 2015 para ver el impacto de la misma en ese año.
 	\end{itemize}
 	
 	Como se mencionó en los apartados anteriores para la selección de las reglas se uso la medida Kulczynsky, la cual en ambas tablas tiene valores altos y en el caso de algunas reglas con valor de 0.50 se usó la razón de desbalanceo (IR) para ayudar en la decisión.\\
 	
-	En el resultado encontrado de las reglas generadas en ambos años, por ID de producto las lupas con diferentes aumentos comprados por casas de óptica es una característica que sobresale en ambos años. Por otro lado la compra de botellas de color rojo y azul de 500cc y 750cc con botellas color plateado de 500cc, también se reflejan como transacciones muy frecuentes. Finalmente, otra regla bastante interesante es la compra de termos de tipo rojo y azul en medidas de 400cc por las casas de pesca.\\
+	En el resultado encontrado de las reglas \textit{\textbf{por ID de producto}}, "Copo Modelo: LN129B Tipo: EXTENSIBLE" resultó en una compra muy frecuente junto al "Copo Modelo: LN117B Tipo: ALUM.ANODIZADO" durante el 2014 sin embargo en el 2015 para el mismo periodo no tuvo un impacto significativo es decir no fue una compra frecuente.\\
 	
-	Con respecto a la descripción del producto, se puede apreciar que las reglas interesantes comprenden compra de binoculares del tipo travel II, lupas de mano y lupas profesionales por casas de óptica; de la misma manera, sombreros y capas por las casas de pesca. Una regla bastante interesante es la de la compra de bolsas para dormir tipo Gravity, por casas con un gasto medio, de camping y con un patrón de compra frecuente en ambos años.\\
+	Por otro lado la compra de Binoculares Teens en 2 colores diferentes (Rojo y Negro) son una compra poco frecuente por las casas de óptica, esta regla en el 2015 tampoco tuvo impacto significativo al ver que el porcentaje de transacciones en el que se encuentra es practicamente cero.\\
 	
-	Por el lado de las subcategorias se destacan un par de reglas interesantes referentes a las cañas de tipo fly y sus correspondientes accesorios del mismo tipo (líneas y reels) comprados por casas de pesca, mientras que las bolsas de dormir rectangulares se asocian a casas con un gasto alto y compras muy frecuentes. Similarmente la regla de compra de binoculares, linternas por casas de opticas indica la compra de lupas en general.\\
+	Con respecto a la \textit{\textbf{descripción del producto}}, se puede apreciar una regla bastante interesante que es la compra de 2 tipos de pala: plegable y pala pico, esta como una compra muy frecuente en el 2014 y que también tiene impacto similar en el 2015 para el mismo periodo.\\
 	
-	En las reglas obtenidas por categoria, vemos que destacan las casas que compran muy frecuente, con las casas de pesca y con gastos altos para ambos años. De la misma manera artículos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels, así como también artículos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
+	De la misma manera, las líneas monofilamento en cojunto con los reels tipo charger son poco frecuentes con el reel Bellus, esto en el 2015 se ve que es una regla interesante con una asociación negativa, es decir que un cliente que compre un reel tipo charger con una linea monofilamento es poco probable que compre un reel Bellus.\\
 	
-	La tabla \ref{Tab_Reg_Anio2014} presenta las reglas interesantes encontradas para el 2014, mientras que la tabla \ref{Tab_Reg_Anio2015} contiene el cálculo de las medidas a mano del 2015 para las mismas reglas que resultaron interesantes en el 2014, ambas tablas ordenadas por la medida Kulczynsky.
+	Para las \textbf{\textit{subcategorias}} se destacan un par de reglas interesantes referentes a las cañas de tipo Pejerrey y sus correspondiente accesorio del mismo tipo (reel) junto con anzuelos representan clientes con un gasto medio.\\ 
+	
+	Las bolsas de dormir rectangulares con las de tipo sarcofago se asocian con la compra de linternas por casas de pesca, estas reglas en el 2014 tienen una asociación positiva mientras que en el 2015 ocurre un efecto contrario.\\\\ 
+	
+	Por último la regla de compra de  telescopios reflectores  por casas de opticas es muy poco frecuente guarda una asociación negativa en el 2014  mientras que en el 2015 su efecto es de asociación positiva.\\
+	
+	En las reglas obtenidas por \textit{\textbf{categoria}}, vemos que destacan las casas que compran muy frecuente, son las casas de pesca y con gastos altos para ambos años. De la misma manera artículos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels, así como también artículos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
+	
+	La tabla \ref{Tab_Reg_Anio2014} presenta las 10 reglas interesantes encontradas para el 2014, mientras que la tabla \ref{Tab_Reg_Anio2015} contiene el cálculo de las medidas a mano del 2015 para las mismas reglas que resultaron interesantes en el 2014, ambas tablas ordenadas por la medida Kulczynsky.
 	
 	\newgeometry{left=3cm,bottom=0.1cm}
 	\begin{landscape}
@@ -313,88 +321,67 @@
 				\caption{Reglas Interesantes del 2014}
 				\renewcommand{\arraystretch}{1.2}
 				\addtolength{\tabcolsep}{-1.5pt}
+				\small
+				\begin{tabular}{llllllll}
+					\textbf Reglas & \textbf Soporte & \textbf Confianza & \textbf Lift & \textbf Coseno & \textbf Kulczinsky & \textbf IR & \textbf Grupo \\
+					\hline
+					\renewcommand{\arraystretch}{1.5}
+					{LN129B,Muy Frecuente} =\textgreater {LN117B} & 0.007 & 1.0   & 100.625 & 0.866 & 0.875 & 0.250 & Producto \\
+					{TN4X30-1,Poco Frecuente,CASA DE OPTICA} =\textgreater {TN4X30-4} & 0.006 & 1.0   & 89.444 & 0.745 & 0.778 & 0.444 & Producto \\
+					{PALA PLEGABLE,Muy Frecuente} =\textgreater {PALA PICO} & 0.010 & 0.800 & 32.200 & 0.566 & 0.600 & 0.455 & Desc. General \\
+					{LiNEA MONOFILAMENTO,REEL CHARGER,Poco Frecuente} =\textgreater {REEL BELLUS} & 0.012 & 1.000 & 11.500 & 0.378 & 0.571 & 0.857 & Desc. General \\
+					{ANZUELOS,CAÑAS VARIADA,REELS PEJERREY,Gasto Medio} =\textgreater {CAÑAS PEJERREY} & 0.006 & 1.000 & 21.184 & 0.363 & 0.566 & 0.868 & Subcategoria \\
+					{BOLSAS DORMIR SARCOFAGO,LINTERNAS,CASA DE PESCA} =\textgreater {BOLSAS DORMIR RECTANGULAR} & 0.007 & 1.000 & 9.471 & 0.266 & 0.535 & 0.929 & Subcategoria \\
+					{TELESCOPIOS REFLECTORES,Poco Frecuente} =\textgreater {CASA DE OPTICA} & 0.010 & 0.800 & 5.963 & 0.243 & 0.437 & 0.891 & Subcategoria \\
+					{PESCA REELS,Gasto Alto,CASA DE PESCA} =\textgreater {PESCA CAÑAS} & 0.088 & 0.855 & 2.981 & 0.513 & 0.581 & 0.609 & Categoria \\
+					{PESCA REELS,TIRO Y DEFENSA,CASA DE PESCA} =\textgreater {PESCA} & 0.021 & 1.000 & 2.639 & 0.236 & 0.528 & 0.944 & Categoria \\
+					{CAMPING,INDUMENTARIA,Gasto Medio,CASA DE PESCA} =\textgreater {Frecuente} & 0.010 & 1.000 & 5.476 & 0.233 & 0.527 & 0.946 & Categoria \\					
+				\end{tabular}%
+				\label{Tab_Reg_Anio2014}%
+			\end{table}%
+		\end{landscape}
+	\restoregeometry			
+	\newgeometry{left=3cm,bottom=0.1cm}
+		\begin{landscape}	
+			\begin{table}[htbp]
+				\centering
+				\caption{Reglas del 2015 con valores calculados a mano en base a las Interesantes del 2014}
+				\renewcommand{\arraystretch}{1.2}
+				\addtolength{\tabcolsep}{-1.5pt}
+				\small
 				\begin{tabular}{llllllll}
 					\textbf Reglas & \textbf Soporte & \textbf Confianza & \textbf Lift & \textbf Coseno & \textbf Kulczinsky & \textbf IR & \textbf Grupo \\
 					\hline
 					\renewcommand{\arraystretch}{1.2}
-					{BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Muy Frecuente} =\textgreater {BTP4S79-5SC} & 0.007 & 0.971 & 58.350 & 0.659 & 0.709 & 0.532 & Producto \\
-					{MG1970,CASA DE OPTICA} =\textgreater {MG1968} & 0.012 & 0.844 & 38.136 & 0.672 & 0.689 & 0.333 & Producto \\
-					{LCM1406NR,CASA DE PESCA} =\textgreater {LCM1406NB} & 0.008 & 0.923 & 46.306 & 0.604 & 0.659 & 0.553 & Producto \\
-					{BTP4S79-5RC,BTP4S79-75RC,CASA DE CAMPING} =\textgreater {BTP4S79-5BLC} & 0.005 & 1.000 & 55.000 & 0.549 & 0.651 & 0.699 & Producto \\
-					{HPR50600,Gasto Bajo,CASA DE OPTICA} =\textgreater {HPR50360} & 0.007 & 0.625 & 25.938 & 0.413 & 0.449 & 0.484 & Producto \\
-					{SOMBRERO DE ALA,CASA DE PESCA} =\textgreater {CAP CON VISERA} & 0.014 & 0.816 & 16.406 & 0.472 & 0.544 & 0.627 & Desc. General \\
-					{PASAHILOS,CASA DE PESCA} =\textgreater {PUNTERA} & 0.013 & 0.641 & 22.178 & 0.535 & 0.544 & 0.242 & Desc. General \\
-					{CAJA DE POLIPROPILENO,CAJA TRANSPARENTE} =\textgreater {CASA DE PESCA} & 0.006 & 1.000 & 2.010 & 0.111 & 0.506 & 0.988 & Desc. General \\
-					{BINOCULAR TRAVEL II,LUPA DE MANO,CASA DE OPTICA} =\textgreater {LUPA PROFESIONALES} & 0.005 & 0.852 & 21.847 & 0.332 & 0.491 & 0.830 & Desc. General \\
-					{BOLSA DE DORMIR GRAVITY - 230 x 80 x 55,Gasto Medio} =\textgreater {CASA DE CAMPING} & 0.009 & 0.619 & 3.290 & 0.168 & 0.332 & 0.901 & Desc. General \\
-					{BOLSAS DORMIR RECTANGULAR,Gasto Alto} =\textgreater {Muy Frecuente} & 0.038 & 1.000 & 1.559 & 0.243 & 0.530 & 0.941 & Subcategoria \\
-					{Gasto Bajo,CASA DE PESCA} =\textgreater {Poco Frecuente} & 0.061 & 0.700 & 3.902 & 0.489 & 0.521 & 0.446 & Subcategoria \\
-					{CAÑAS VARIADA,REELS PEJERREY,Gasto Medio} =\textgreater {CASA DE PESCA} & 0.013 & 0.923 & 1.856 & 0.156 & 0.475 & 0.969 & Subcategoria \\
-					{CAÑAS FLY,LINEAS FLY,CASA DE PESCA} =\textgreater {REELS FLY} & 0.005 & 0.719 & 28.285 & 0.378 & 0.459 & 0.672 & Subcategoria \\
-					{TELESCOPIOS REFRACTORES,Gasto Bajo} =\textgreater {CASA DE OPTICA} & 0.019 & 0.763 & 5.556 & 0.325 & 0.451 & 0.784 & Subcategoria \\
-					{BINOCULARES CLASICOS,LINTERNAS,CASA DE OPTICA} =\textgreater {LUPAS} & 0.006 & 0.763 & 11.422 & 0.269 & 0.429 & 0.850 & Subcategoria \\
-					{Muy Frecuente,CASA DE PESCA} =\textgreater {Gasto Alto} & 0.272 & 0.803 & 1.837 & 0.707 & 0.712 & 0.195 & Categoria \\
-					{PESCA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA REELS} & 0.072 & 0.764 & 4.137 & 0.544 & 0.576 & 0.440 & Categoria \\
-					{OPTICA,Gasto Alto,CASA POLIRUBRO} =\textgreater {Muy Frecuente} & 0.007 & 1.000 & 1.559 & 0.103 & 0.505 & 0.989 & Categoria \\
-					{CAMPING,PESCA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA REELS} & 0.034 & 0.766 & 4.147 & 0.378 & 0.476 & 0.716 & Categoria \\
-					{CAMPING,INDUMENTARIA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA} & 0.011 & 0.754 & 2.526 & 0.170 & 0.396 & 0.938 & Categoria \\
+					{LN129B,Muy Frecuente} =\textgreater {LN117B} & 0.000 & N/A   & N/A   & N/A   & N/A   & 1.000 & Producto \\
+					{TN4X30-1,Poco Frecuente,CASA DE OPTICA} =\textgreater {TN4X30-4} & 0.000 & 0.000 & N/A   & N/A   & N/A   & 1.000 & Producto \\
+					{PALA PLEGABLE,Muy Frecuente} =\textgreater {PALA PICO} & 0.023 & 0.676 & 17.624 & 0.640 & 0.641 & 0.082 & Desc. General \\
+					{LiNEA MONOFILAMENTO,REEL CHARGER,Poco Frecuente} =\textgreater {REEL BELLUS} & 0.004 & 0.667 & 5.893 & 0.154 & 0.351 & 0.930 & Desc. General \\
+					{ANZUELOS,CAÑAS VARIADA,REELS PEJERREY,Gasto Medio} =\textgreater {CAÑAS PEJERREY} & 0.003 & 0.333 & 7.174 & 0.147 & 0.199 & 0.712 & Subcategoria \\
+					{BOLSAS DORMIR SARCOFAGO,LINTERNAS,CASA DE PESCA} =\textgreater {BOLSAS DORMIR RECTANGULAR} & 0.003 & 0.429 & 7.577 & 0.152 & 0.241 & 0.817 & Subcategoria \\
+					{TELESCOPIOS REFLECTORES,Poco Frecuente} =\textgreater {CASA DE OPTICA} & 0.014 & 1.000 & 9.519 & 0.367 & 0.567 & 0.865 & Subcategoria \\
+					{PESCA REELS,Gasto Alto,CASA DE PESCA} =\textgreater {PESCA CAÑAS} & 0.117 & 0.859 & 2.281 & 0.517 & 0.585 & 0.607 & Categoria \\
+					{PESCA REELS,TIRO Y DEFENSA,CASA DE PESCA} =\textgreater {PESCA} & 0.026 & 0.722 & 1.788 & 0.217 & 0.394 & 0.888 & Categoria \\
+					{CAMPING,INDUMENTARIA,Gasto Medio,CASA DE PESCA} =\textgreater {Frecuente} & 0.006 & 0.429 & 2.269 & 0.117 & 0.230 & 0.887 & Categoria \\	
 				\end{tabular}%
-				\label{Tab_Reg_Anio2014}%
+				\label{Tab_Reg_Anio2015}%
 			\end{table}%		
 		\end{landscape}
-	\restoregeometry
-	\newgeometry{left=3cm,bottom=0.1cm}
-	\begin{landscape}
-		
-		% Table generated by Excel2LaTeX from sheet 'ReglasFinales'
-		\begin{table}[htbp]
-			\centering
-			\caption{Reglas del 2015 con valores calculados a mano en base a las Interesantes del 2014}
-			\renewcommand{\arraystretch}{1.2}
-			\addtolength{\tabcolsep}{-1.5pt}
-			\begin{tabular}{llllllll}
-				\textbf Reglas & \textbf Soporte & \textbf Confianza & \textbf Lift & \textbf Coseno & \textbf Kulczinsky & \textbf IR & \textbf Grupo \\
-				\hline
-				\renewcommand{\arraystretch}{1.2}
-				{MG1970,CASA DE OPTICA} =\textgreater {MG1968} & 0.008 & 1     & 52.485 & 0.651 & 0.712 & 0.576 & Producto \\
-				{BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Muy Frecuente} =\textgreater {BTP4S79-5SC} & 0.011 & 0.950 & 30.470 & 0.578 & 0.651 & 0.618 & Producto \\
-				{LCM1406NR,CASA DE PESCA} =\textgreater {LCM1406NB} & 0.007 & 0.923 & 47.023 & 0.571 & 0.638 & 0.600 & Producto \\
-				{BTP4S79-5RC,BTP4S79-75RC,CASA DE CAMPING} =\textgreater {BTP4S79-5BLC} & 0.009 & 0.833 & 32.803 & 0.533 & 0.587 & 0.553 & Producto \\
-				{HPR50600,Gasto Bajo,CASA DE OPTICA} =\textgreater {HPR50360} & 0.007 & 0.706 & 30.565 & 0.460 & 0.503 & 0.511 & Producto \\
-				{BINOCULAR TRAVEL II,LUPA DE MANO,CASA DE OPTICA} =\textgreater {LUPA PROFESIONALES} & 0.008 & 1     & 27.492 & 0.454 & 0.603 & 0.794 & Desc. General \\
-				{PASAHILOS,CASA DE PESCA} =\textgreater {PUNTERA} & 0.019 & 0.660 & 15.877 & 0.550 & 0.559 & 0.247 & Desc. General \\
-				{CAJA DE POLIPROPILENO,CAJA TRANSPARENTE} =\textgreater {CASA DE PESCA} & 0.010 & 0.900 & 1.676 & 0.132 & 0.460 & 0.976 & Desc. General \\
-				{SOMBRERO DE ALA,CASA DE PESCA} =\textgreater {CAP CON VISERA} & 0.013 & 0.733 & 9.408 & 0.346 & 0.448 & 0.734 & Desc. General \\
-				{BOLSA DE DORMIR GRAVITY - 230 x 80 x 55,Gasto Medio} =\textgreater {CASA DE CAMPING} & 0.008 & 0.636 & 3.444 & 0.167 & 0.340 & 0.909 & Desc. General \\
-				{CAÑAS FLY,LINEAS FLY,CASA DE PESCA} =\textgreater {REELS FLY} & 0.016 & 0.903 & 20.858 & 0.581 & 0.638 & 0.564 & Subcategoria \\
-				{Gasto Bajo,CASA DE PESCA} =\textgreater {Poco Frecuente} & 0.074 & 0.705 & 3.666 & 0.523 & 0.546 & 0.388 & Subcategoria \\
-				{TELESCOPIOS REFRACTORES,Gasto Bajo} =\textgreater {CASA DE OPTICA} & 0.022 & 0.884 & 9.165 & 0.448 & 0.556 & 0.721 & Subcategoria \\
-				{BOLSAS DORMIR RECTANGULAR,Gasto Alto} =\textgreater {Muy Frecuente} & 0.028 & 1     & 1.605 & 0.213 & 0.523 & 0.955 & Subcategoria \\
-				{BINOCULARES CLASICOS,LINTERNAS,CASA DE OPTICA} =\textgreater {LUPAS} & 0.008 & 0.929 & 13.865 & 0.323 & 0.520 & 0.872 & Subcategoria \\
-				{CAÑAS VARIADA,REELS PEJERREY,Gasto Medio} =\textgreater {CASA DE PESCA} & 0.028 & 0.860 & 1.601 & 0.213 & 0.456 & 0.931 & Subcategoria \\
-				{Muy Frecuente,CASA DE PESCA} =\textgreater {Gasto Alto} & 0.246 & 0.742 & 1.860 & 0.676 & 0.679 & 0.139 & Categoria \\
-				{PESCA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA REELS} & 0.143 & 0.832 & 2.643 & 0.614 & 0.642 & 0.417 & Categoria \\
-				{CAMPING,PESCA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA REELS} & 0.083 & 0.856 & 2.721 & 0.474 & 0.559 & 0.664 & Categoria \\
-				{CAMPING,INDUMENTARIA,PESCA CAÑAS,CASA DE PESCA} =\textgreater {PESCA} & 0.027 & 0.979 & 2.359 & 0.253 & 0.522 & 0.932 & Categoria \\
-				{OPTICA,Gasto Alto,CASA POLIRUBRO} =\textgreater {Muy Frecuente} & 0.009 & 1     & 1.605 & 0.122 & 0.507 & 0.985 & Categoria \\
-			\end{tabular}%
-			\label{Tab_Reg_Anio2015}%
-		\end{table}%
-		
-		
-	\end{landscape}
-	\restoregeometry
+	\restoregeometry	
 	\section{Bonus}
-	Basado en todas las reglas generadas entre la tabla 1, 2 y 4 pero de manera especial en las siguientes:\\
+	Basado en todas las reglas generadas entre la tabla 2, 3, 5 y 6 pero de manera especial en las siguientes:\\
 	\begin{itemize}
 		\item PESCA REELS =\textgreater PESCA
 		\item BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Capital Federal-Prov =\textgreater BTP4S79-5SC
-		\item BTP4S79-5RC,BTP4S79-75RC,BTP4S79-75SC,Muy Frecuente =\textgreater BTP4S79-5SC
-		\item CA~NAS FLY,LINEAS FLY,CASA DE PESCA =\textgreater REELS FLY\\
+		\item CAÑAS VARIADA,NYLON =\textgreater REELS VARIADA
+		\item PESCA REELS,Gasto Alto,CASA DE PESCA =\textgreater PESCA CAÑAS
+		\item BOLSAS DORMIR SARCOFAGO,LINTERNAS,CASA DE PESCA =\textgreater BOLSAS DORMIR RECTANGULAR
 	\end{itemize}
 	 Proponemos una promoción que consista en que: 
 	\begin{itemize}
-		\item Las compras realizadas en artículos de pesca de preferencia cañas de pescar de diferente tipo se les ofrezca llevar gratis una botella de 500 o 750cc de color a elección (rojo, azul o plateado) para los clientes de Capital Federal.\\
+		\item Las compras realizadas en artículos de pesca de preferencia cañas de pescar de diferente tipo o enfocado a un tipo en particular (Ej. Pejerrey, Dorado, Fly, etc)  se les realice un descuento sobre las mismas por la compra de items como botella de 500 o 750cc de cualquier color (rojo, azul o plateado) o items no tan comunes que se compran con la caña de pescar pero que se dan frecuentes con otros items como las linternas y las bolsas de dormir, todo esto para los clientes de Capital Federal.\\
+		
+		Esto tiene una ventaja de que como se conoce las cañas de pescar tiene un precio alto, se incentiva a comprarlas en conjunto con otros articulos frecuentes para que el negocio tenga más salida y venta en esos otros articulos y el cliente a su vez también gana con la compra de los items en conjunto.\\
 	\end{itemize}
 
 	\section{Conclusiones}
@@ -420,7 +407,7 @@
 	\textbf{Resultados}: Aquí se puede encontrar la base final consolidada la cual se tomó como entrada el algoritmo que generó las reglas así como también todos los  archivos en formato de excel con las reglas para cada una de las secciones del informe.\\
 	
 	\textbf{Sintaxis}: Contiene los scripts en R utilizados para generar las reglas y para separar el campo descripción adicional, con la generación del .csv para importarse como nueva tabla al modelo original en Access.\\
-	
+
 	\bibliographystyle{apalike}
 	\bibliography{Bibliografia}
 	
