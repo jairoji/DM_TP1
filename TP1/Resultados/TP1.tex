@@ -190,29 +190,24 @@
 	\subsection{Reglas generadas de un año a otro}
 	Las reglas presentadas a continuación fueron tomadas con las siguientes condiciones:
 	\begin{itemize}
-		\item El periodo de comparación del 2014 elegido (de acuerdo a la información disponible para el 2015) va desde el mes de marzo hasta mayo.
-		\item Las reglas generadas e identificadas como interesantes reflejan un periodo de comparación similar entre un año y otro, a las elegidas del 2014 se les calcularon a "mano" las medidas en el 2015 para ver el impacto de la mismas en ese año.
+		\item El periodo de comparación del 2014 elegido va desde el mes de marzo hasta mayo, de acuerdo a la información disponible para el 2015.
+		\item A las reglas generadas e identificadas como interesantes en 2014, presentadas en  la tabla \ref{Tab_Reg_Anio2014}, se les calcularon “a mano" las medidas en el 2015 para ver el impacto de la mismas en ese año, cuyo resultado se refleja en la tabla \ref{Tab_Reg_Anio2015}.
 	\end{itemize}
 	
-	Como se mencionó en los apartados anteriores para la selección de las reglas se usó la medida Kulczynsky, la cual en ambas tablas tiene valores altos y en el caso de algunas reglas con valor de 0.50 se utilizó la razón de desbalanceo (IR) para ayudar en la decisión.\\
+	Para la selección de las reglas interesantes en 2014 se usó la medida Kulczynsky, apoyada, en caso de ser necesario, por la razón de desbalanceo (IR). \\
 	
-	En el resultado encontrado de las reglas \textit{\textbf{por ID de producto}}, "Copo Modelo: LN129B Tipo: EXTENSIBLE" resultó en una compra por parte de clientes muy frecuentes junto al "Copo Modelo: LN117B Tipo: ALUM.ANODIZADO" durante el 2014 sin embargo en el 2015 para el mismo periodo no tuvo un impacto significativo es decir no fue una compra frecuente.\\
+	Como primer comentario, inspeccionando la tabla \ref{Tab_Reg_Anio2015} se observa que la mayoría de las reglas (6 de 10) no superan en 2015 el umbral de minsup y minconf establecidos como parámetros del algoritmo. \\
 	
-	Por otro lado la compra de Binoculares Teens en 2 colores diferentes (Rojo y Negro) por parte de clientes poco frecuente y casas de óptica, en el 2015 tampoco tuvo impacto significativo al ver que el porcentaje de transacciones en el que se encuentra es practicamente cero.\\
+	Con respecto a las dos reglas generadas por \textit{\textbf{ID de Producto}}, se aprecia que en 2015 no vuelven a repetirse, al punto que la regla que vincula  "Copo Modelo: LN129B Tipo: EXTENSIBLE" con clientes muy frecuentes junto al "Copo Modelo: LN117B Tipo: ALUM.ANODIZADO", no participa en ninguna transacción durante el período contemplado en 2015.\\
 	
-	Con respecto a las reglas asociadas con la \textit{\textbf{descripción del producto}}, se puede apreciar una bastante interesante que es la compra de 2 tipos de pala: plegable y pala pico por parte de clientes muy frecuentes en el 2014 tiene un impacto similar en el 2015.\\
+	Por otro lado la compra de Binoculares Teens en 2 colores diferentes (Rojo y Negro) por parte de clientes poco frecuentes y casas de óptica, en el 2015 tampoco tuvo impacto significativo al ver que el porcentaje de transacciones en el que se encuentra es practicamente cero.\\
 	
-	De la misma manera, las líneas monofilamento en cojunto con los reels tipo charger por clientes poco frecuentes junto con el reel Bellus, esto en el 2015 se ve que es una regla interesante con una asociación negativa, es decir que un cliente que compre un reel tipo charger con una linea monofilamento es poco probable que compre un reel Bellus.\\
+	Analizando las reglas asociadas con la \textit{\textbf{Descripción del Producto}}, se destaca una bastante interesante que es la compra de 2 tipos de pala: plegable y pala pico por parte de clientes muy frecuentes, que en 2015 tiene medidas similares a las obtenidas para 2014.\\
+		
+	Para \textbf{\textit{Subcategoría}}, la regla de compra de telescopios reflectores por clientes con un nivel de transacción poco frecuentes, junto con casas de óptica, guarda una asociación negativa en el 2014 (apreciable por un Kulczinsky cercano a 0) mientras que en el 2015 su efecto es de asociación positiva.\\ 
 	
-	Para las reglas de \textbf{\textit{subcategoría}} se destacan las referentes a las cañas de tipo Pejerrey y sus correspondiente accesorio del mismo tipo (reel) junto con anzuelos y clientes con un gasto medio solamente en el 2014 pero no aportan lo mismo en el 2015.\\ 
+	Por último, en las reglas obtenidas por \textit{\textbf{Categoría}}, dos de las tres reglas interesantes de 2014 “sobreviven” en 2015, entre las que se destaca aquella que asocia las casas de pesca y con gastos altos, pesca reels y pesca cañas.\\
 	
-	Las bolsas de dormir rectangulares con las de tipo sarcofago se asocian con la compra de linternas por casas de pesca, esta regla en el 2014 tienen una asociación positiva mientras que en el 2015 no resulto interesante.\\\\ 
-	
-	Por último la regla de compra de  telescopios reflectores  por casas de opticas es muy poco frecuente guarda una asociación negativa en el 2014  mientras que en el 2015 su efecto es de asociación positiva.\\
-	
-	En las reglas obtenidas por \textit{\textbf{categoría}}, vemos que destacan las casas que compran muy frecuente, son las casas de pesca y con gastos altos para ambos años. De la misma manera artículos de camping, pesca, cañas de pescar compradas por las casas de pesca implican compra de reels, así como también artículos de camping, indumentaria, cañas de pescar y pesca ocurren frecuentemente para casas de pesca.\\
-	
-	La tabla \ref{Tab_Reg_Anio2014} presenta las 10 reglas interesantes encontradas para el 2014, mientras que la tabla \ref{Tab_Reg_Anio2015} contiene el cálculo de las medidas a mano del 2015 para las mismas reglas que resultaron interesantes en el 2014, ambas tablas ordenadas por la medida Kulczynsky.
 	
 	\newgeometry{left=3cm,bottom=0.1cm}
 	\begin{landscape}
